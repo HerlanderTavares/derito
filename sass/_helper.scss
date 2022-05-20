@@ -1,0 +1,131 @@
+@mixin flex($horizontal: null, $vertical: null, $direction: null) {
+  display: flex;
+
+  @if $direction != null {
+    flex-direction: $direction;
+
+    @if $horizontal != null {
+      justify-content: $vertical;
+    }
+
+    @if $vertical != null {
+      justify-content: $horizontal;
+    }
+  }
+
+  @if $horizontal != null {
+    justify-content: $horizontal;
+  }
+
+  @if $vertical != null {
+    align-items: $vertical;
+  }
+}
+
+@mixin grid($columns: null, $rows: null) {
+  display: grid;
+
+  @if $columns != null {
+    grid-template-columns: repeat($columns, 1fr);
+  }
+
+  @if $rows != null {
+    grid-template-rows: repeat($rows, 1fr);
+  }
+}
+
+@mixin drop-shadow($x: 1, $y: 1, $blur: 1, $opacity: 1) {
+  @if $x == remove {
+    -webkit-filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0));
+    filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0));
+  } @else {
+    -webkit-filter: drop-shadow(
+      calc($x * 1rem) calc($y * 1rem) calc($blur * 1rem) rgba(0, 0, 0, $opacity)
+    );
+    filter: drop-shadow(
+      calc($x * 1rem) calc($y * 1rem) calc($blur * 1rem) rgba(0, 0, 0, $opacity)
+    );
+  }
+}
+
+@mixin test {
+  .active-area {
+    background-color: hsl(0 0% 50%);
+  }
+}
+
+@mixin absolute($top: null, $left: null, $bottom: null, $right: null) {
+  position: absolute;
+
+  @if $top != null {
+    top: $top;
+  }
+  @if $right != null {
+    right: $right;
+  }
+  @if $bottom != null {
+    bottom: $bottom;
+  }
+  @if $left != null {
+    left: $left;
+  }
+}
+
+@mixin noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@mixin triangle($size, $color, $width: null) {
+  width: 0;
+  height: 0;
+  border-bottom: $size solid $color;
+
+  @if $width != null {
+    border-left: $width solid transparent;
+    border-right: $width solid transparent;
+  } @else {
+    border-left: calc($size / 2) solid transparent;
+    border-right: calc($size / 2) solid transparent;
+  }
+}
+
+/****************************************
+     FUNCTIONS
+****************************************/
+@function color($color-name) {
+  @return map-get($colors, $color-name);
+}
+
+@function font($font-name) {
+  $font: map-get($fonts, $font-name);
+  @return $font, sans-serif;
+}
+
+@function weight($weight-name) {
+  @return map-get($font-weights, $weight-name);
+}
+
+@function gradient($gradient-name) {
+  @return map-get($gradients, $gradient-name);
+}
+@function marbo($margin-bottom) {
+  @return map-get($marbo, $margin-bottom);
+}
+@function trans($transition-name) {
+  @return map-get($transitions, $transition-name);
+}
+
+/****************************************
+     CLASSES
+****************************************/
+%pseudo {
+  content: "";
+  @include absolute(0, 0);
+  width: 100%;
+  height: 100%;
+}

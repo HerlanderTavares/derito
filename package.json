@@ -1,0 +1,21 @@
+{
+  "name": "derito",
+  "version": "2.2.0",
+  "description": "The portfolio of the musician and composer, Derito",
+  "default": "index.html",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html --dist-dir ./dist"
+  },
+  "author": "Herlander Tavares",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.18.0",
+    "parcel": "^2.5.0",
+    "sass": "^1.52.0"
+  },
+  "dependencies": {
+    "core-js": "^3.22.5",
+    "lodash": "^4.17.21"
+  }
+}
