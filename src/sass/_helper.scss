@@ -42,15 +42,7 @@
     -webkit-filter: drop-shadow(
       calc($x * 1rem) calc($y * 1rem) calc($blur * 1rem) rgba(0, 0, 0, $opacity)
     );
-    filter: drop-shadow(
-      calc($x * 1rem) calc($y * 1rem) calc($blur * 1rem) rgba(0, 0, 0, $opacity)
-    );
-  }
-}
-
-@mixin test {
-  .active-area {
-    background-color: hsl(0 0% 50%);
+    filter: drop-shadow(calc($x * 1rem) calc($y * 1rem) calc($blur * 1rem) rgba(0, 0, 0, $opacity));
   }
 }
 
@@ -124,8 +116,112 @@
      CLASSES
 ****************************************/
 %pseudo {
-  content: "";
-  @include absolute(0, 0);
+  content: '';
   width: 100%;
   height: 100%;
 }
+
+%contact-btn__pseudo {
+  @extend %pseudo;
+  @include absolute(0, 0);
+  border-radius: 0.4em;
+  z-index: -1;
+  transition: all 300ms ease;
+  box-sizing: border-box;
+}
+
+/****************************************
+     MEDIA QUERIES
+****************************************/
+
+@function breakpoint($breakpoint) {
+  @return map-get($queries, $breakpoint);
+}
+
+@mixin respondW($minmax, $width) {
+  @if $minmax == min {
+    @media (min-width: breakpoint($width)) {
+      @content;
+    }
+  }
+
+  @if $minmax == max {
+    @media (max-width: breakpoint($width)) {
+      @content;
+    }
+  }
+}
+
+@mixin respondH($minmax, $height) {
+  @if $minmax == min {
+    @media (min-height: breakpoint($height)) {
+      @content;
+    }
+  }
+
+  @if $minmax == max {
+    @media (max-height: breakpoint($height)) {
+      @content;
+    }
+  }
+}
+
+@mixin respondQueries() {
+  @media (max-height: breakpoint(850)) {
+    @content;
+  }
+
+  @media (max-width: breakpoint(tab-l)) {
+    @content;
+  }
+}
+
+@mixin respondPortrait($height: null, $width: null) {
+  @if $height != null and $width != null {
+    @media (orientation: portrait) and (max-height: breakpoint($height)) and (max-width: breakpoint($width)) {
+      @content;
+    }
+  }
+
+  @if $height != null {
+    @media (orientation: portrait) and (max-height: breakpoint($height)) {
+      @content;
+    }
+  }
+
+  @if $width != null {
+    @media (orientation: portrait) and (max-width: breakpoint($width)) {
+      @content;
+    }
+  }
+
+  @if $height == null and $width == null {
+    @media (orientation: portrait) {
+      @content;
+    }
+  }
+}
+
+@mixin respondLandscape() {
+  @media (orientation: landscape) {
+    @content;
+  }
+}
+
+@mixin respondPhone() {
+  @media (max-height: breakpoint(phone)) {
+    @content;
+  }
+
+  @media (max-width: breakpoint(phone)) {
+    @content;
+  }
+}
+
+/*
+Phone: 0 - 600px
+Tablet Portrait: 600px - 900px
+Tablet Landscape: 900px - 1200px
+Desktop: 1200px - 1800px
+Large Desktop: 1800px +
+*/

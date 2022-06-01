@@ -1,0 +1,122 @@
+.navbar {
+  width: 100%;
+  aspect-ratio: 5/2.8;
+  @include absolute;
+
+  &__list {
+    width: calc(100% - $hero__border-radius);
+    @include flex(space-between, center);
+    @include absolute(-6rem, 50%);
+    transform: translateX(-50%);
+  }
+
+  &__item {
+    text-transform: uppercase;
+    display: inline-block;
+    transform: translateY(0);
+    transition: trans(400);
+    border-radius: 0.4em;
+    font-size: 1.8rem;
+
+    &:hover,
+    &:active,
+    &:focus {
+      transform: translateY(-1rem);
+
+      .navbar__link::after {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  }
+
+  &__link::after {
+    @extend %pseudo;
+    @include absolute(null, 0, -0.5rem, null);
+    height: 0.12rem;
+    background-color: color(400);
+    transition: trans(400);
+    transform: translateY(-700%);
+    opacity: 0;
+  }
+
+  &__btn {
+    border: solid 0.1em color(200);
+    text-transform: uppercase;
+    width: 6.5em;
+    height: 2.2em;
+    border-radius: 0.4em;
+    cursor: pointer;
+    z-index: 1;
+    box-sizing: border-box;
+    $border-hover: 0.21em;
+
+    &::before {
+      @extend %contact-btn__pseudo;
+      border-top: solid $border-hover color(200);
+      border-right: solid $border-hover transparent;
+      transform: scaleX(0) scaleY(0.5);
+      transform-origin: 0 0;
+    }
+
+    &::after {
+      @extend %contact-btn__pseudo;
+      border-bottom: solid $border-hover color(200);
+      border-left: solid $border-hover transparent;
+      transform: scaleX(0) scaleY(0.5);
+      transform-origin: 100% 100%;
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+      font-weight: weight(medium);
+
+      &::before,
+      &::after {
+        animation: pseudo-hover 200ms ease forwards;
+      }
+
+      &::after {
+        animation-delay: 200ms;
+      }
+    }
+  }
+
+  &__close-btn {
+    width: 5rem;
+    aspect-ratio: 1;
+    cursor: pointer;
+    transition: trans(400);
+    @include absolute(1.5rem, null, null, 1.5rem);
+    z-index: 1000;
+    display: none;
+
+    &:hover,
+    &:active {
+      opacity: 0.5;
+      transform: scale(0.8);
+    }
+  }
+}
+
+@keyframes pseudo-hover {
+  0% {
+    transform: scaleX(0) scaleY(0.5);
+  }
+
+  33% {
+    transform: scaleX(1) scaleY(0.5);
+  }
+
+  66% {
+    border-right-color: color(200);
+    border-left-color: color(200);
+  }
+
+  100% {
+    transform: scaleX(1) scaleY(1);
+    border-right-color: color(200);
+    border-left-color: color(200);
+  }
+}

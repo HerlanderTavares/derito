@@ -1,0 +1,307 @@
+/****************************************
+     FIXED NAVBAR
+****************************************/
+.navbar--fixed {
+  //Position
+  @include flex(center, center);
+  position: fixed;
+  z-index: 999;
+  inset: auto;
+  top: 0;
+
+  //Attributes
+  height: 100vh;
+  width: 23vw;
+  background-color: color(100);
+  transform-origin: 100% 100%;
+  transition: all 300ms ease-in-out;
+
+  //Orientation
+  &[data-side='left'] {
+    left: 0;
+  }
+
+  &[data-side='right'] {
+    right: 0;
+  }
+
+  .navbar__list {
+    position: initial;
+    flex-direction: column;
+    transform: translateX(0);
+    align-items: stretch;
+    width: 65%;
+  }
+
+  .navbar__item {
+    position: relative;
+    transition: none;
+
+    //After Pseudo Class
+    &::after {
+      @extend %pseudo;
+      @include absolute(50%, 50%);
+      background-color: rgba(color(400), 0.3);
+      transform: translate(-50%, -50%) scaleX(0);
+      opacity: 1;
+      height: 90%;
+      z-index: -5;
+      transition: trans(400);
+    }
+
+    &:hover::after {
+      transform: translate(-50%, -50%) scaleX(1);
+    }
+
+    //Contact Button
+    &:last-child {
+      align-self: center;
+      margin-top: 10rem;
+      position: relative;
+
+      &::after {
+        width: calc(100% - 1.5rem);
+        height: calc(100% - 1.5rem);
+        border-radius: 0.5rem;
+      }
+
+      &:active {
+        transition: none;
+        transform: scale(0.9) translateY(5%);
+      }
+    }
+
+    //All Links
+    &:not(:last-child) {
+      border-radius: 0;
+    }
+
+    //Last Link
+    &:nth-child(4) {
+      border-bottom: solid 0.1rem color(200);
+    }
+
+    //Hover State
+    &:hover {
+      transform: translateY(0);
+    }
+
+    //Active State
+    &:active {
+      background-color: rgba(color(600), 0.5);
+
+      .navbar__link,
+      .navbar__btn {
+        color: color(000);
+      }
+    }
+  }
+
+  .navbar__link {
+    border-top: solid 0.1rem color(200);
+    width: 100%;
+    text-align: center;
+    padding: 1.2em 0;
+
+    &:hover {
+      font-weight: weight(medium);
+    }
+
+    &::after {
+      display: none;
+    }
+  }
+
+  .navbar__btn {
+    width: 10em;
+    height: 3em;
+
+    &::after,
+    &::before {
+      display: none;
+    }
+  }
+
+  .navbar__close-btn {
+    display: inline-block;
+  }
+}
+
+/****************************************
+     RESPONSIVE
+****************************************/
+.navbar--fixed {
+  @include respondW(max, laptop) {
+    width: 30vw;
+  }
+
+  @include respondW(max, tab-l) {
+    width: 45vw;
+  }
+  @include respondW(max, tab-p) {
+    width: 50vw;
+  }
+
+  @include respondW(max, phone) {
+    width: 100vw;
+  }
+}
+
+/****************************************
+     MENU BUTTON
+****************************************/
+
+.menu-btn {
+  width: 5rem;
+  aspect-ratio: 1.2/1;
+  cursor: pointer;
+  transition: trans(400);
+  @include flex(space-between, null, column);
+  pointer-events: auto;
+  z-index: 998;
+
+  @include respondPhone() {
+    width: $phone-btns-width;
+  }
+
+  &__icon {
+    width: 100%;
+    height: 0.5rem;
+    background-color: color(200);
+    border-radius: 100vh;
+    transform-origin: 100% 100%;
+    transition: all 200ms ease;
+
+    @include respondPhone() {
+      height: 0.4rem;
+    }
+  }
+
+  &:hover {
+    transform: scale(1.15);
+    opacity: 0.8;
+  }
+
+  &:active {
+    transform: scale(0.9);
+    transition: none;
+  }
+}
+
+.fixed {
+  //Menu-btn__container
+  position: fixed;
+  max-width: 120rem;
+  width: 100%;
+  top: 0rem;
+  z-index: 998;
+  padding: 4rem 0;
+  transition: trans(400);
+  pointer-events: none;
+  padding: 5rem;
+  display: flex;
+
+  @include respondPhone() {
+    padding: 4rem 2.5rem;
+  }
+}
+
+.btn-hide {
+  .menu-btn__icon {
+    transform: scaleX(0);
+
+    &:nth-child(2) {
+      transition-delay: 100ms;
+    }
+
+    &:last-child {
+      transition-delay: 200ms;
+    }
+  }
+}
+
+.btn-show {
+  .menu-btn__icon {
+    transform: scaleX(1);
+
+    &:nth-child(2) {
+      transition-delay: 100ms;
+    }
+
+    &:first-child {
+      transition-delay: 200ms;
+    }
+  }
+}
+
+/****************************************
+     HERO MENU BUTTON
+****************************************/
+.menu-btn--hero {
+  @include drop-shadow(0.5, 0.5, 0.5);
+  height: 100%;
+
+  .menu-btn__icon {
+    background-color: color(000);
+  }
+}
+
+/****************************************
+     FIXED LEFT OR RIGHT
+****************************************/
+$btn-position: 3rem;
+
+.navbar[data-side='left'] {
+  & ~ .hero .menu-btn__container {
+    @include absolute(5rem, 5rem, null, null);
+    @include respondPhone() {
+      top: $btn-position;
+      left: $btn-position;
+    }
+
+    .menu-btn__icon {
+      transform-origin: 0 0;
+    }
+  }
+
+  & ~ .fixed {
+    justify-content: flex-start;
+    flex-direction: row !important;
+
+    .menu-btn__icon {
+      transform-origin: 0 0;
+    }
+  }
+}
+
+.navbar[data-side='right'] {
+  & ~ .hero .menu-btn__container {
+    @include absolute(5rem, null, null, 5rem);
+    @include respondPhone() {
+      top: $btn-position;
+      right: $btn-position;
+    }
+
+    .menu-btn__icon {
+      transform-origin: 100% 100%;
+    }
+  }
+
+  & ~ .fixed {
+    justify-content: flex-end;
+    flex-direction: row !important;
+
+    .menu-btn__icon {
+      transform-origin: 100% 100%;
+    }
+  }
+}
+
+/****************************************
+     JAVASCRIPT
+****************************************/
+
+.menu-btn {
+  opacity: 0;
+  pointer-events: none;
+}

@@ -48,8 +48,34 @@ $marbo: (
 ****************************************/
 $transitions: (
   400: all 300ms ease-in-out,
-  500: all 600ms,
+  450: all 500ms ease-in-out,
+  500: all 600ms ease-in-out,
 );
+
+/****************************************
+     MEDIA QUERIES
+****************************************/
+$queries: (
+  'phone': 37.5em /*600px*/,
+  'tab-p': 56.25em /*900px*/,
+  'tab-l': 75em /*1200px*/,
+  'laptop': 85em /*1360px*/,
+  'desktop': 112.5em /*1800px*/,
+
+  //Other Breakpoints
+  1300: 81.25em,
+  500: 31.25em,
+  400: 25em,
+
+  //Height Breakpoints
+  850: 53.125em,
+  900: 56.25em,
+  600: 37.5em,
+);
+
+// EMs are used for media queries
+// 1em = 16px
+// We calculate: (breakpoint) / 16
 
 /****************************************
      CLIP PATHS
@@ -95,3 +121,9 @@ $map-clip-reset: polygon(
   12.5% 100%,
   0% 100%
 );
+
+/****************************************
+     RESPONSIVE SIZES
+****************************************/
+$phone-btns-width: 4rem;
+$phone-btns-radius: 0.5rem;

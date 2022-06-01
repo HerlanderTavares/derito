@@ -11,11 +11,16 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.18.0",
+    "@parcel/transformer-sass": "^2.5.0",
+    "buffer": "^6.0.3",
     "parcel": "^2.5.0",
-    "sass": "^1.52.0"
+    "process": "^0.11.10",
+    "sass": "^1.52.0",
+    "util": "^0.12.4"
   },
   "dependencies": {
     "core-js": "^3.22.5",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "tappify": "^1.0.10"
   }
 }

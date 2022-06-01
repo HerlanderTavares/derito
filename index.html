@@ -4,7 +4,144 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="src/sass/main.scss" />
+    <script defer type="module" src="/src/js/controller.js"></script>
     <title>Derito</title>
   </head>
-  <body> </body>
+
+  <body data-lang="english">
+    <header class="header">
+      <div class="header__active-area">
+        <nav class="navbar" data-side="right">
+          <button class="navbar__close-btn">
+            <svg class="icon">
+              <use href="/src/imgs/icons.svg#close-btn"></use>
+            </svg>
+          </button>
+
+          <ul class="navbar__list">
+            <li class="navbar__item"><a href="#music" class="navbar__link">My Music</a></li>
+            <li class="navbar__item"><a href="#albums" class="navbar__link">My Albums</a></li>
+            <li class="navbar__item"><a href="#journey" class="navbar__link">My Journey</a></li>
+            <li class="navbar__item"><a href="#gallery" class="navbar__link">Gallery</a></li>
+            <li class="navbar__item"><button class="navbar__btn">Contact</button></li>
+          </ul>
+        </nav>
+
+        <div class="menu-btn__container fixed">
+          <button class="menu-btn menu-btn--fixed">
+            <div class="menu-btn__icon"></div>
+            <div class="menu-btn__icon"></div>
+            <div class="menu-btn__icon"></div>
+          </button>
+        </div>
+
+        <section class="hero">
+          <div class="menu-btn__container">
+            <div class="lang-menu" data-menu="mobile">
+              <ul class="lang-menu__list">
+                <li class="lang-menu__item" data-flag-number="0" data-lang="english">
+                  <a class="lang-menu__link" href="/index.html">
+                    <svg class="flag"><use href="/src/imgs/flags.svg#england"></use></svg>
+                  </a>
+                </li>
+                <li class="lang-menu__item" data-flag-number="1" data-lang="french">
+                  <a class="lang-menu__link" href="/site_france.html">
+                    <svg class="flag"><use href="/src/imgs/flags.svg#france"></use></svg>
+                  </a>
+                </li>
+                <li class="lang-menu__item" data-flag-number="2" data-lang="portuguese">
+                  <a class="lang-menu__link" href="/site_portugal.html">
+                    <svg class="flag"><use href="/src/imgs/flags.svg#portugal"></use></svg>
+                  </a>
+                </li>
+                <li class="lang-menu__item" data-flag-number="3" data-lang="spanish">
+                  <a class="lang-menu__link" href="/site_spain.html">
+                    <svg class="flag">
+                      <use href="/src/imgs/flags.svg#spain"></use>
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+
+              <button class="lang-menu__btn">
+                <svg class="flag"></svg>
+              </button>
+            </div>
+
+            <button class="menu-btn menu-btn--hero">
+              <div class="menu-btn__icon"></div>
+              <div class="menu-btn__icon"></div>
+              <div class="menu-btn__icon"></div>
+            </button>
+          </div>
+
+          <div class="hero__img-container img-shadow--container">
+            <img
+              src="/src/imgs/01-hero/hero-img.png"
+              alt="Derito sitting down"
+              class="hero__img img-shadow"
+            />
+          </div>
+
+          <div class="hero__img-container">
+            <img src="/src/imgs/01-hero/hero-img.png" alt="Derito sitting down" class="hero__img" />
+          </div>
+
+          <div class="hero__content">
+            <h1 class="hero__title">Derito</h1>
+
+            <div class="lang-menu" data-menu="desktop">
+              <ul class="lang-menu__list">
+                <li class="lang-menu__item" data-flag-number="0" data-lang="english">
+                  <a class="lang-menu__link" href="/index.html">
+                    <svg class="flag"><use href="/src/imgs/flags.svg#england"></use></svg>
+                  </a>
+                </li>
+                <li class="lang-menu__item" data-flag-number="1" data-lang="french">
+                  <a class="lang-menu__link" href="/site_france.html">
+                    <svg class="flag"><use href="/src/imgs/flags.svg#france"></use></svg>
+                  </a>
+                </li>
+                <li class="lang-menu__item" data-flag-number="2" data-lang="portuguese">
+                  <a class="lang-menu__link" href="/site_portugal.html">
+                    <svg class="flag"><use href="/src/imgs/flags.svg#portugal"></use></svg>
+                  </a>
+                </li>
+                <li class="lang-menu__item" data-flag-number="3" data-lang="spanish">
+                  <a class="lang-menu__link" href="/site_spain.html">
+                    <svg class="flag">
+                      <use href="/src/imgs/flags.svg#spain"></use>
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+
+              <button class="lang-menu__btn">
+                <svg class="flag"></svg>
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </header>
+
+    <main>
+      <section class="music" id="music"
+        ><div class="active-area"><h2>My Music</h2></div></section
+      >
+      <section class="album" id="albums"
+        ><div class="active-area"> <h2>My Albums</h2></div></section
+      >
+      <section class="journey" id="journey"
+        ><div class="active-area"> <h2>My Journey</h2></div></section
+      >
+      <section class="gallery" id="gallery"
+        ><div class="active-area"> <h2>My Gallery</h2></div></section
+      >
+    </main>
+
+    <footer></footer>
+  </body>
 </html>

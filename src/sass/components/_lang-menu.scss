@@ -1,0 +1,137 @@
+.lang-menu {
+  @include absolute(null, 50%, -50%);
+  transition: trans(400);
+  z-index: 200;
+
+  &__list {
+    @include flex(center, center);
+    transition: gap 300ms ease;
+  }
+
+  &__item,
+  &__btn {
+    width: 5rem;
+    aspect-ratio: 1;
+    font-size: 10px;
+    border-radius: 1em;
+    overflow: hidden;
+    transition: trans(400);
+    @include drop-shadow(0.5, 0.5, 0.7, 0.8);
+
+    @include respondW(max, 400) {
+      @include drop-shadow(0.5, 0.5, 0.7, 0.4);
+    }
+
+    &:hover,
+    &:focus {
+      transform: scale(1.2);
+      @include drop-shadow(0.7, 0.7, 1, 0.5);
+    }
+
+    &:active {
+      width: 4.5rem;
+    }
+  }
+
+  &__btn {
+    z-index: 10;
+    @include absolute(0, 0);
+    cursor: pointer;
+    transition: none;
+    transition: transform 300ms ease-in-out, filter 300ms ease-in-out;
+    z-index: 20;
+    background-color: lightblue;
+  }
+
+  &__link {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.flag {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+
+  use {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+}
+
+@keyframes pan {
+  0% {
+    bottom: -50%;
+  }
+
+  100% {
+    bottom: -60%;
+  }
+}
+
+/****************************************
+     HERO BURGER LANGUAGE MENU
+****************************************/
+.menu-btn__container {
+  @include flex(center, center);
+  gap: 3rem;
+
+  .lang-menu {
+    position: initial;
+    transform: translateX(0);
+  }
+}
+
+/****************************************
+     RESPONSIVE
+****************************************/
+.lang-menu[data-menu='mobile'] {
+  display: none;
+
+  @include respondQueries() {
+    display: block;
+  }
+
+  .lang-menu__btn {
+    left: auto;
+    right: 0;
+  }
+
+  .lang-menu__item,
+  .lang-menu__btn {
+    @include respondPhone() {
+      width: $phone-btns-width;
+      border-radius: $phone-btns-radius;
+    }
+  }
+
+  .lang-menu__list {
+    @include respondW(max, 400) {
+      flex-direction: column;
+    }
+  }
+}
+
+.menu-btn__container {
+  @include respondW(max, 400) {
+    flex-direction: column;
+
+    .menu-btn--hero {
+      order: 1;
+    }
+
+    .lang-menu {
+      order: 2;
+    }
+  }
+}
+
+.lang-menu[data-menu='desktop'] {
+  display: block;
+
+  @include respondQueries() {
+    display: none;
+  }
+}

@@ -1,0 +1,57 @@
+//Fonts
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  backface-visibility: hidden;
+
+  &:focus {
+    outline: none;
+    background-color: none;
+  }
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: font(main);
+  font-size: 2rem;
+  color: color(200);
+  font-weight: weight(light);
+  line-height: 1.7;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  &:link,
+  &:visited {
+    text-decoration: none;
+    color: currentColor;
+    display: inline-block;
+  }
+}
+
+button {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  font-weight: inherit;
+}
+
+.icon {
+  width: 100%;
+  height: 100%;
+  stroke: color(400);
+  fill: color(400);
+  color: color(400);
+}

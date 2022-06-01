@@ -1,0 +1,135 @@
+.hero {
+  background-image: url(/src/imgs/01-hero/hero-bkg.jpg);
+
+  @include respondQueries() {
+    height: 100%;
+    background-size: cover;
+  }
+
+  &__content {
+    width: 60%;
+    @include flex(center, center);
+    z-index: 5;
+    position: relative;
+  }
+
+  &__title {
+    color: color(000);
+    font-family: font(heading);
+    text-transform: uppercase;
+    font-size: 10rem;
+    letter-spacing: 0.5rem;
+    font-weight: weight(light);
+    @include drop-shadow(0.5, 0.5, 0.7, 0.8);
+  }
+
+  &__img-container {
+    width: 100%;
+    height: 103%;
+    border-radius: $hero__border-radius;
+    @include absolute(null, 0, 0);
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .img-shadow--container {
+    height: 100%;
+  }
+
+  &__img {
+    height: 100%;
+    @include absolute(null, -10rem, 0);
+  }
+
+  .img-shadow {
+    transform: translateX(5%);
+    height: 103%;
+    -webkit-filter: brightness(0) blur(20px);
+    filter: brightness(0) blur(20px);
+    opacity: 0.5;
+  }
+}
+
+/****************************************
+     RESPONSIVE
+****************************************/
+@include respondQueries() {
+  .hero {
+    overflow: hidden;
+
+    .hero__img-container {
+      height: 95%;
+    }
+
+    .img-shadow--container {
+      height: 95%;
+      overflow: initial;
+    }
+
+    .img-shadow {
+      height: 100%;
+      -webkit-filter: brightness(0) blur(30px);
+      filter: brightness(0) blur(30px);
+    }
+  }
+}
+
+@include respondPortrait(null, tab-l) {
+  .hero {
+    background-image: url(/src/imgs/01-hero/hero-bkg-no-guitar.jpg);
+  }
+}
+
+.hero {
+  &__content {
+    @include respondW(max, tab-p) {
+      width: 90%;
+    }
+
+    @include respondW(max, phone) {
+      width: 100%;
+    }
+  }
+
+  &__title {
+    @include respondW(max, 500) {
+      font-size: 8rem;
+    }
+
+    @include respondW(max, 400) {
+      font-size: 6rem;
+    }
+  }
+
+  &__img {
+    @include respondPortrait(tab-l) {
+      @include respondW(max, tab-l) {
+        left: -20rem;
+      }
+      @include respondW(max, tab-p) {
+        left: -30rem;
+      }
+      @include respondW(max, phone) {
+        left: -40rem;
+      }
+    }
+
+    @include respondPortrait(tab-p) {
+      @include respondW(max, tab-p) {
+        left: -20rem;
+      }
+      @include respondW(max, phone) {
+        left: -30rem;
+      }
+    }
+
+    @include respondPortrait(phone) {
+      @include respondW(max, phone) {
+        left: -10rem;
+      }
+      @include respondW(max, 400) {
+        left: -15rem;
+      }
+    }
+  }
+}
