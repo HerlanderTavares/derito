@@ -1,0 +1,237 @@
+/****************************************
+     HEADER
+****************************************/
+.header {
+  height: 100vh;
+  min-height: $min-vh;
+
+  @include respondQueries() {
+    padding: 5rem;
+    margin-bottom: -5rem;
+  }
+
+  @include respondPhone() {
+    padding: 2rem;
+    margin-bottom: -2rem;
+  }
+
+  &__active-area {
+    @extend .active-area;
+    @include flex(center, center);
+    position: relative;
+
+    @include respondQueries() {
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+}
+
+/****************************************
+     HERO SECTION
+****************************************/
+$hero__border-radius: 2.7rem;
+.hero {
+  width: 100%;
+  aspect-ratio: 5/2.8;
+  border-radius: $hero__border-radius;
+  position: relative;
+  background-size: 120%;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  @include flex(flex-end, center);
+  background-image: url(/src/imgs/01-hero/hero-bkg.jpg);
+
+  @include respondQueries() {
+    height: 100%;
+    background-size: cover;
+  }
+
+  &__content {
+    width: 60%;
+    @include flex(center, center);
+    z-index: 5;
+    position: relative;
+  }
+
+  &__title {
+    color: color(000);
+    font-family: font(heading);
+    text-transform: uppercase;
+    font-size: 10rem;
+    letter-spacing: 0.5rem;
+    font-weight: weight(light);
+    @include drop-shadow(0.5, 0.5, 0.7, 0.8);
+  }
+
+  &__img-container {
+    width: 100%;
+    height: 108%;
+    border-radius: $hero__border-radius;
+    @include absolute(null, 0, 0);
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .img-shadow--container {
+    height: 100%;
+  }
+
+  &__img {
+    height: 100%;
+    transform: translateX(-20%);
+  }
+
+  .img-shadow {
+    @include absolute(null, 3rem, 0);
+    height: 108%;
+    -webkit-filter: brightness(0) blur(20px);
+    filter: brightness(0) blur(20px);
+    opacity: 0.5;
+  }
+}
+
+/****************************************
+     SUBHERO SECTION
+****************************************/
+.subhero {
+  @include flex(center, center);
+  position: relative;
+
+  &__title {
+    font-size: 2.3rem;
+    font-weight: weight(medium);
+    transition: trans(400);
+
+    //Javascript
+    opacity: 0;
+    -webkit-filter: blur(4px);
+    filter: blur(4px);
+  }
+
+  @include respondH(max, desktop) {
+    height: 40vh;
+  }
+
+  @include respondH(max, laptop) {
+    height: 50vh;
+  }
+
+  @include respondH(max, tab-l) {
+    height: 65vh;
+  }
+
+  @include respondH(max, tab-p) {
+    height: 75vh;
+  }
+
+  @include respondH(max, phone) {
+    height: 90vh;
+  }
+}
+
+/****************************************
+     RESPONSIVE
+****************************************/
+@include respondQueries() {
+  .hero {
+    overflow: hidden;
+
+    .hero__img-container {
+      height: 95%;
+    }
+
+    .img-shadow--container {
+      height: 95%;
+      overflow: initial;
+    }
+
+    .img-shadow {
+      height: 100%;
+      -webkit-filter: brightness(0) blur(30px);
+      filter: brightness(0) blur(30px);
+    }
+  }
+}
+
+@include respondPortrait(null, tab-l) {
+  .hero {
+    background-image: url(/src/imgs/01-hero/hero-bkg-no-guitar.jpg);
+  }
+}
+
+@include respondLandscape(phone) {
+  .hero {
+    background-image: url(/src/imgs/01-hero/hero-bkg-no-guitar.jpg);
+  }
+}
+
+.hero {
+  &__content {
+    @include respondW(max, tab-p) {
+      width: 90%;
+    }
+
+    @include respondW(max, phone) {
+      width: 100%;
+    }
+
+    @include respondLandscape(phone) {
+      @include respondW(max, tab-p) {
+        width: 60%;
+      }
+
+      @include respondW(max, 750) {
+        width: 80%;
+      }
+    }
+  }
+
+  &__title {
+    @include respondW(max, 500) {
+      font-size: 8rem;
+    }
+
+    @include respondW(max, 400) {
+      font-size: 6rem;
+    }
+  }
+
+  &__img {
+    @include respondPortrait() {
+      @include respondW(max, tab-p) {
+        transform: translateX(-30%);
+      }
+      @include respondW(max, phone) {
+        transform: translateX(-40%);
+      }
+    }
+
+    @include respondLandscape(850) {
+      transform: translateX(-5%);
+
+      @include respondW(max, tab-l) {
+        transform: translateX(-10%);
+      }
+    }
+
+    @include respondLandscape(phone) {
+      transform: translateX(0);
+
+      @include respondW(max, tab-l) {
+        transform: translateX(-15%);
+      }
+      @include respondW(max, tab-p) {
+        transform: translateX(-35%);
+      }
+    }
+  }
+
+  .hero__img-container {
+    @include respondLandscape(phone) {
+      height: 170%;
+      bottom: auto;
+      top: 2rem;
+    }
+  }
+}

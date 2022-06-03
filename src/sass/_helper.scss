@@ -202,9 +202,29 @@
   }
 }
 
-@mixin respondLandscape() {
-  @media (orientation: landscape) {
-    @content;
+@mixin respondLandscape($height: null, $width: null) {
+  @if $height != null and $width != null {
+    @media (orientation: landscape) and (max-height: breakpoint($height)) and (max-width: breakpoint($width)) {
+      @content;
+    }
+  }
+
+  @if $height != null {
+    @media (orientation: landscape) and (max-height: breakpoint($height)) {
+      @content;
+    }
+  }
+
+  @if $width != null {
+    @media (orientation: landscape) and (max-width: breakpoint($width)) {
+      @content;
+    }
+  }
+
+  @if $height == null and $width == null {
+    @media (orientation: landscape) {
+      @content;
+    }
   }
 }
 
@@ -217,11 +237,3 @@
     @content;
   }
 }
-
-/*
-Phone: 0 - 600px
-Tablet Portrait: 600px - 900px
-Tablet Landscape: 900px - 1200px
-Desktop: 1200px - 1800px
-Large Desktop: 1800px +
-*/

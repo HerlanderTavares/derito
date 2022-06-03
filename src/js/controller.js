@@ -1,18 +1,11 @@
-import * as model from './model.js';
-import navigation from './components/navbar.js';
-import language from './components/langMenu.js';
+import hero from './sections/hero.js';
+import music from './sections/music.js';
+import albums from './sections/albums.js';
+import journey from './sections/journey.js';
+import gallery from './sections/gallery.js';
 
-console.log('We active');
-
-/****************************************
-     NAVIGATION
-****************************************/
-navigation.smoothScroll();
-navigation.interact();
-navigation.fixedNav();
-navigation.heroNav();
-
-/****************************************
-     LANGUAGE MENU
-****************************************/
-language.interact();
+hero.interact();
+music.interact();
+albums.interact();
+journey.interact();
+gallery.interact();

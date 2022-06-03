@@ -3,12 +3,18 @@
 @import 'helper';
 @import 'variables';
 @import 'base';
-@import 'layout';
+
+/****************************************
+     SECTIONS
+****************************************/
+@import 'sections/hero';
+@import 'sections/music';
+@import 'sections/albums';
+@import 'sections/journey';
+@import 'sections/gallery';
 
 /****************************************
      COMPONENTS
 ****************************************/
 @import 'components/navbar';
-@import 'components/navbar-fixed';
-@import 'components/hero';
 @import 'components/lang-menu';

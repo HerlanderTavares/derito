@@ -50,7 +50,7 @@ class Language {
       setTimeout(() => {
         parent.desktopOpen();
         setTimeout(() => menu.classList.add('opened'), 300);
-      }, 100);
+      }, 200);
     });
 
     //Close On Click
