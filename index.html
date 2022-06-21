@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="preload" lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="stylesheet" href="src/sass/main.scss" />
-    <script defer type="module" src="/src/js/controller.js"></script>
+    <script type="module" defer src="/src/js/controller.js"></script>
     <title>Derito</title>
   </head>
 
@@ -31,33 +31,33 @@
 
         <div class="menu-btn__container fixed">
           <button class="menu-btn menu-btn--fixed">
-            <div class="menu-btn__icon"></div>
-            <div class="menu-btn__icon"></div>
-            <div class="menu-btn__icon"></div>
+            <span class="menu-btn__icon"></span>
+            <span class="menu-btn__icon"></span>
+            <span class="menu-btn__icon"></span>
           </button>
         </div>
 
         <section class="hero">
           <div class="menu-btn__container">
-            <div class="lang-menu" data-menu="mobile">
-              <ul class="lang-menu__list">
-                <li class="lang-menu__item" data-flag-number="0" data-lang="english">
+            <div class="lang-menu preload" data-menu="mobile">
+              <ul class="lang-menu__list preload">
+                <li class="lang-menu__item preload" data-flag-number="0" data-lang="english">
                   <a class="lang-menu__link" href="/index.html">
                     <svg class="flag"><use href="/src/imgs/flags.svg#england"></use></svg>
                   </a>
                 </li>
-                <li class="lang-menu__item" data-flag-number="1" data-lang="french">
-                  <a class="lang-menu__link" href="/site_france.html">
+                <li class="lang-menu__item preload" data-flag-number="1" data-lang="french">
+                  <a class="lang-menu__link" href="/site_french.html">
                     <svg class="flag"><use href="/src/imgs/flags.svg#france"></use></svg>
                   </a>
                 </li>
-                <li class="lang-menu__item" data-flag-number="2" data-lang="portuguese">
-                  <a class="lang-menu__link" href="/site_portugal.html">
+                <li class="lang-menu__item preload" data-flag-number="2" data-lang="portuguese">
+                  <a class="lang-menu__link" href="/site_portuguese.html">
                     <svg class="flag"><use href="/src/imgs/flags.svg#portugal"></use></svg>
                   </a>
                 </li>
-                <li class="lang-menu__item" data-flag-number="3" data-lang="spanish">
-                  <a class="lang-menu__link" href="/site_spain.html">
+                <li class="lang-menu__item preload" data-flag-number="3" data-lang="spanish">
+                  <a class="lang-menu__link" href="/site_spanish.html">
                     <svg class="flag">
                       <use href="/src/imgs/flags.svg#spain"></use>
                     </svg>
@@ -65,15 +65,15 @@
                 </li>
               </ul>
 
-              <button class="lang-menu__btn">
+              <button class="lang-menu__btn preload">
                 <svg class="flag"></svg>
               </button>
             </div>
 
             <button class="menu-btn menu-btn--hero">
-              <div class="menu-btn__icon"></div>
-              <div class="menu-btn__icon"></div>
-              <div class="menu-btn__icon"></div>
+              <span class="menu-btn__icon"></span>
+              <span class="menu-btn__icon"></span>
+              <span class="menu-btn__icon"></span>
             </button>
           </div>
 
@@ -92,33 +92,31 @@
           <div class="hero__content">
             <h1 class="hero__title">Derito</h1>
 
-            <div class="lang-menu" data-menu="desktop">
-              <ul class="lang-menu__list">
-                <li class="lang-menu__item" data-flag-number="0" data-lang="english">
+            <div class="lang-menu preload" data-menu="desktop">
+              <ul class="lang-menu__list preload">
+                <li class="lang-menu__item preload" data-flag-number="0" data-lang="english">
                   <a class="lang-menu__link" href="/index.html">
                     <svg class="flag"><use href="/src/imgs/flags.svg#england"></use></svg>
                   </a>
                 </li>
-                <li class="lang-menu__item" data-flag-number="1" data-lang="french">
-                  <a class="lang-menu__link" href="/site_france.html">
+                <li class="lang-menu__item preload" data-flag-number="1" data-lang="french">
+                  <a class="lang-menu__link" href="/site_french.html">
                     <svg class="flag"><use href="/src/imgs/flags.svg#france"></use></svg>
                   </a>
                 </li>
-                <li class="lang-menu__item" data-flag-number="2" data-lang="portuguese">
-                  <a class="lang-menu__link" href="/site_portugal.html">
+                <li class="lang-menu__item preload" data-flag-number="2" data-lang="portuguese">
+                  <a class="lang-menu__link" href="/site_portuguese.html">
                     <svg class="flag"><use href="/src/imgs/flags.svg#portugal"></use></svg>
                   </a>
                 </li>
-                <li class="lang-menu__item" data-flag-number="3" data-lang="spanish">
-                  <a class="lang-menu__link" href="/site_spain.html">
-                    <svg class="flag">
-                      <use href="/src/imgs/flags.svg#spain"></use>
-                    </svg>
+                <li class="lang-menu__item preload" data-flag-number="3" data-lang="spanish">
+                  <a class="lang-menu__link" href="/site_spanish.html">
+                    <svg class="flag"><use href="/src/imgs/flags.svg#spain"></use></svg>
                   </a>
                 </li>
               </ul>
 
-              <button class="lang-menu__btn">
+              <button class="lang-menu__btn preload">
                 <svg class="flag"></svg>
               </button>
             </div>
@@ -128,22 +126,185 @@
     </header>
 
     <main>
-      <section class="subhero" id="subhero"
-        ><h2 class="subhero__title">Angolan Musician & Composer</h2></section
-      >
+      <section class="subhero" id="subhero">
+        <h2 class="subhero__title">Angolan Musician & Composer</h2>
+      </section>
 
-      <section class="music" id="music"
-        ><div class="active-area"><h2>My Music</h2></div></section
-      >
+      <section class="music" id="music">
+        <div class="active-area">
+          <div class="music-grid">
+            <div class="section-title">
+              <span class="section-title__sub">My Styles</span>
+              <span class="section-title__main">Of Music</span>
+            </div>
+
+            <!-- *********** Semba Card *********** -->
+            <div class="music-card semba">
+              <div class="music-card__container">
+                <div class="music-card__bkg"></div>
+                <div class="music-card__img"></div>
+
+                <div class="music-card__content">
+                  <span class="music-card__title" data-title="content">Semba</span>
+                  <p>
+                    Africa is a continent filled with many different rich cultures and styles of
+                    music, but I gravitated to the styles that are more prominent in my birth
+                    country of Angola, such as Kilapanga, Rumba, Cumbia, Merengue, and our most
+                    well-known, Semba.
+                  </p>
+                </div>
+                <span class="music-card__title" data-title="image">Semba</span>
+              </div>
+
+              <div class="player">
+                <audio src="/src/mp3/mix_african-music.mp3"></audio>
+                <div class="player__active-area">
+                  <div class="player__body">
+                    <div class="player__border">
+                      <button class="player__play-btn">
+                        <svg class="icon play-icon">
+                          <use href="/src/imgs/icons.svg#play-btn"></use>
+                        </svg>
+                        <span class="pause-icon">
+                          <div></div>
+                          <div></div>
+                        </span>
+                      </button>
+                      <div class="player__seeker">
+                        <div class="player__seeker-bar">
+                          <div class="player__seeker-progress-bar"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <button class="music-card__learn">
+                <span>Learn More</span>
+                <svg class="icon">
+                  <use href="/src/imgs/icons.svg#arrow-forward"></use>
+                </svg>
+              </button>
+            </div>
+            <!-- *********** Semba Card *********** -->
+
+            <!-- *********** Afrojazz Card *********** -->
+            <div class="music-card afrojazz">
+              <div class="music-card__container">
+                <div class="music-card__bkg"></div>
+                <div class="music-card__img"></div>
+
+                <div class="music-card__content">
+                  <span class="music-card__title" data-title="content">Afrojazz</span>
+                  <p
+                    >AfroJazz is a fusion between the African style of music and Jazz. This was a
+                    natural progression for me even from my original style, as I began adding Jazz
+                    chords and elements to my songs. The complexity of Jazz brought another flavour
+                    to my work, and revealed new possibilities.
+                  </p>
+                </div>
+                <span class="music-card__title" data-title="image">Afrojazz</span>
+              </div>
+
+              <div class="player">
+                <audio src="/src/mp3/mix_afrojazz.mp3"></audio>
+                <div class="player__active-area">
+                  <div class="player__body">
+                    <div class="player__border">
+                      <button class="player__play-btn">
+                        <svg class="icon play-icon">
+                          <use href="/src/imgs/icons.svg#play-btn"></use>
+                        </svg>
+                        <span class="pause-icon">
+                          <div></div>
+                          <div></div>
+                        </span>
+                      </button>
+                      <div class="player__seeker">
+                        <div class="player__seeker-bar">
+                          <div class="player__seeker-progress-bar"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <button class="music-card__learn">
+                <span>Learn More</span>
+                <svg class="icon">
+                  <use href="/src/imgs/icons.svg#arrow-back"></use>
+                </svg>
+              </button>
+            </div>
+            <!-- *********** Afrojazz Card *********** -->
+
+            <!-- *********** Afrobossa Card *********** -->
+            <div class="music-card afrobossa">
+              <div class="music-card__container">
+                <div class="music-card__bkg"></div>
+                <div class="music-card__img"></div>
+
+                <div class="music-card__content">
+                  <span class="music-card__title" data-title="content">Afrobossa</span>
+                  <p>
+                    AfroBossa is a fusion between Bossa Nova and African music. Bossa Nova is a
+                    child of Samba, a Brazilian style that has its roots in Africa, roots taken to
+                    Brazil during the slave trade. I created this style with the aim of bringing
+                    those roots back to Brazilian music.
+                  </p>
+                </div>
+                <span class="music-card__title" data-title="image">Afrobossa</span>
+              </div>
+
+              <div class="player">
+                <audio src="/src/mp3/mix_afrobossa.mp3"></audio>
+                <div class="player__active-area">
+                  <div class="player__body">
+                    <div class="player__border">
+                      <button class="player__play-btn">
+                        <svg class="icon play-icon">
+                          <use href="/src/imgs/icons.svg#play-btn"></use>
+                        </svg>
+                        <span class="pause-icon">
+                          <div></div>
+                          <div></div>
+                        </span>
+                      </button>
+                      <div class="player__seeker">
+                        <div class="player__seeker-bar">
+                          <div class="player__seeker-progress-bar"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <button class="music-card__learn">
+                <span>Learn More</span>
+                <svg class="icon">
+                  <use href="/src/imgs/icons.svg#arrow-back"></use>
+                </svg>
+              </button>
+            </div>
+            <!-- *********** Afrobossa Card *********** -->
+          </div>
+        </div>
+      </section>
+
       <section class="album" id="albums"
-        ><div class="active-area"> <h2>My Albums</h2></div></section
-      >
-      <section class="journey" id="journey"
-        ><div class="active-area"> <h2>My Journey</h2></div></section
-      >
-      <section class="gallery" id="gallery"
-        ><div class="active-area"> <h2>My Gallery</h2></div></section
-      >
+        ><div class="active-area"> <h2>My Albums</h2></div>
+      </section>
+
+      <section class="journey" id="journey">
+        <div class="active-area"> <h2>My Journey</h2></div>
+      </section>
+
+      <section class="gallery" id="gallery">
+        <div class="active-area"> <h2>My Gallery</h2></div>
+      </section>
     </main>
 
     <footer></footer>

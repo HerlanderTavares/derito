@@ -1,0 +1,331 @@
+/****************************************
+     MAIN CARD
+****************************************/
+$card-width: 38rem;
+$card-height: 52rem;
+
+.music-card {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: right;
+  align-items: center;
+  position: relative;
+
+  &__container {
+    width: $card-width;
+    height: $card-height;
+    position: relative;
+  }
+
+  &__bkg {
+    width: 100%;
+    height: 100%;
+    @include absolute(0, null, null 0);
+    border-radius: 1.6rem;
+    background-image: gradient(400);
+    margin-left: 2rem;
+    margin-top: -2rem;
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    border-radius: 1.6rem;
+    box-shadow: 0.7rem 0.7rem 3.5rem rgba(black, 0.5);
+    position: relative;
+  }
+
+  &__content {
+    background-color: color(50);
+    @include absolute(null, null, 7%, 50%);
+    z-index: 2;
+    width: 60rem;
+    padding: 3rem;
+    text-align: right;
+    border-radius: 1rem;
+    box-shadow: 0.8rem 0.8rem 2.3rem rgba(black, 0.2);
+    @include flex(center, center);
+    transform-origin: 100% 100%;
+  }
+
+  &__title {
+    background-color: color(200);
+    color: color(000);
+    padding: 0.3rem 2.5rem;
+    text-transform: uppercase;
+    border-radius: 0.3em;
+    box-shadow: 0.4rem 0.4rem 1rem rgba(black, 0.4);
+    display: block;
+
+    &[data-title='content'] {
+      @include absolute(null, null, 0, 0);
+      transform: translate(30%, 50%);
+    }
+
+    &[data-title='image'] {
+      @include absolute(null, null, 0, 50%);
+      transform: translate(50%, 50%);
+      display: none;
+      z-index: 100;
+    }
+  }
+
+  &__learn {
+    font-size: 2.5rem;
+    height: 1.5em;
+    @include flex(center, center);
+    position: relative;
+    cursor: pointer;
+    z-index: 200;
+    display: none;
+    grid-row: 3;
+
+    svg {
+      width: 1.5em;
+      height: 1em;
+      @include absolute(null, null, null, 0);
+      transform: translateX(100%);
+    }
+  }
+
+  .player {
+    @include absolute(null, -35%, 60%, null);
+  }
+}
+
+/****************************************
+     SEMBA
+****************************************/
+.semba {
+  .music-card__img {
+    background-image: url(/src/imgs/02-styles/semba.png);
+    background-size: 120%;
+    background-position: 50% 50%;
+  }
+}
+
+/****************************************
+     AFROJAZZ
+****************************************/
+.afrojazz {
+  .music-card__container {
+    height: $card-width;
+    width: $card-height;
+  }
+
+  .music-card__bkg {
+    margin-left: -2rem;
+  }
+
+  .music-card__img {
+    background-image: url(/src/imgs/02-styles/afrojazz.jpg);
+    background-size: cover;
+    box-shadow: -0.7rem 0.7rem 3rem rgba(black, 0.5);
+  }
+
+  .music-card__content {
+    inset: auto;
+    left: 70%;
+    top: 7%;
+    text-align: left;
+    box-shadow: -0.8rem 0.8rem 2.3rem rgba(black, 0.2);
+    transform-origin: 0 0;
+  }
+
+  .music-card__title[data-title='content'] {
+    right: auto;
+    left: 0;
+    transform: translate(-30%, 50%);
+  }
+
+  .music-card__learn {
+    svg {
+      right: auto;
+      left: 0;
+      transform: translateX(-100%);
+    }
+  }
+
+  .player {
+    inset: auto;
+    right: -20%;
+    bottom: -8%;
+  }
+}
+
+/****************************************
+     AFROBOSSA
+****************************************/
+.afrobossa {
+  grid-column: 2;
+  grid-row: 3;
+
+  .music-card__img {
+    background-image: url(/src/imgs/02-styles/afrobossa.jpg);
+    background-size: 120%;
+    background-position: 0 50%;
+  }
+}
+
+/****************************************
+     RESPONSIVE
+****************************************/
+$mobile-card-width: 41rem;
+$mobile-card-height: 38rem;
+
+@include respondW(max, 1100) {
+  .music-card {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr max-content 1fr;
+    justify-items: center;
+
+    &__container {
+      width: $mobile-card-width !important;
+      height: $mobile-card-height !important;
+      grid-column: 2;
+      grid-row: 1 / -1;
+
+      transform: translateX(-1rem);
+    }
+
+    &__bkg {
+      margin-left: 1.5rem;
+      margin-top: -1.5rem;
+      box-shadow: none !important;
+    }
+
+    &__img {
+      box-shadow: 0.7rem 0.7rem 3.5rem rgba(black, 0.2);
+    }
+
+    &__content {
+      width: 100% !important;
+      height: 100% !important;
+      inset: auto !important;
+      bottom: 0 !important;
+      right: 0 !important;
+      box-shadow: none !important;
+      transition: trans(400);
+      transform: scaleX(0) !important;
+    }
+
+    &__title {
+      &[data-title='content'] {
+        display: none;
+      }
+
+      &[data-title='image'] {
+        display: block;
+      }
+    }
+
+    &__learn {
+      display: flex;
+    }
+
+    .player {
+      position: relative;
+      inset: auto;
+      grid-row: 2;
+      grid-column: 1;
+    }
+  }
+
+  .semba {
+    grid-row: 2;
+  }
+
+  .afrojazz {
+    grid-row: 3;
+    transform: translateX(1rem);
+
+    .music-card__bkg {
+      margin-left: -1rem;
+    }
+
+    .music-card__container {
+      grid-column: 1;
+    }
+
+    .player {
+      grid-column: 2;
+    }
+  }
+
+  .afrobossa {
+    grid-row: 4;
+    grid-column: 1;
+
+    .music-card__img {
+      background-position-y: 25%;
+    }
+  }
+}
+
+@include respondW(max, 750) {
+  .music-card {
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content 1fr max-content 1fr;
+    justify-items: center;
+    gap: 3rem;
+    transform: unset;
+
+    &__bkg {
+      display: none;
+    }
+
+    &__container {
+      grid-column: 1 !important;
+      grid-row: 2 / -1 !important;
+      transform: unset !important;
+      transform-origin: 0 0;
+    }
+
+    &__learn {
+      grid-row: 3;
+      grid-column: 1;
+      color: color(000);
+      background-color: rgba(black, 0.6);
+      width: 17rem;
+      height: 6rem;
+      border-radius: 0.4em;
+      border: solid 2px rgba(color(000), 0.6);
+
+      svg {
+        display: none;
+      }
+    }
+
+    .player {
+      grid-row: 1 !important;
+      grid-column: 1 !important;
+    }
+  }
+}
+
+@include respondW(max, 480) {
+  .music-card {
+    &__container {
+      width: 100% !important;
+      height: auto !important;
+      aspect-ratio: 1 !important;
+    }
+
+    &__content {
+      font-size: 1.9rem !important;
+    }
+  }
+}
+
+@include respondW(max, 300) {
+  .music-card__content {
+    font-size: 1.5rem !important;
+  }
+}
+
+.content-open {
+  transform: scaleX(1) !important;
+}

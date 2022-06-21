@@ -1,6 +1,7 @@
 import navigation from '../components/navbar.js';
 import language from '../components/langMenu.js';
 import {invert} from 'lodash';
+import {timer} from '../helper.js';
 
 class Hero {
   header = document.querySelector('.header');
@@ -36,7 +37,6 @@ class Hero {
            OBSERVE HEIGHT & TOP
     ****************************************/
     const observeGap = new ResizeObserver(entries => {
-      const header = this.header.getBoundingClientRect();
       const hero = this.hero.getBoundingClientRect();
       const {width, height} = entries[0].contentRect;
 
@@ -56,7 +56,7 @@ class Hero {
          OBSERVE HERO SECTION
     ****************************************/
     const parent = this;
-    const observeHero = new IntersectionObserver(callback, {threshold: 0.7});
+    const observeHero = new IntersectionObserver(callback, {threshold: 0.2});
     observeHero.observe(this.hero);
 
     function callback(entries) {

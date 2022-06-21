@@ -148,7 +148,7 @@
   width: 23vw;
   background-color: color(100);
   transform-origin: 100% 100%;
-  transition: all 300ms ease-in-out;
+  transition: trans(400);
 
   //Orientation
   &[data-side='left'] {
@@ -239,6 +239,7 @@
 
     &:hover {
       font-weight: weight(medium);
+      transform: unset;
     }
 
     &::after {
@@ -360,7 +361,6 @@
   width: 100%;
   top: 0rem;
   z-index: 998;
-  padding: 4rem 0;
   transition: trans(400);
   pointer-events: none;
   padding: 5rem;

@@ -1,3 +1,24 @@
 .music {
-  @extend %testing-section;
+  margin-bottom: mb(400);
+
+  .active-area {
+    // background-color: lightgrey;
+  }
+
+  &-grid {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    justify-content: space-between;
+    row-gap: mb(400);
+
+    @include respondW(max, 1100) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .section-title {
+    @include respondW(max, 1100) {
+      align-items: center;
+    }
+  }
 }

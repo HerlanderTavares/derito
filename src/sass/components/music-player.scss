@@ -1,0 +1,134 @@
+.player {
+  position: absolute;
+  pointer-events: none;
+  z-index: 50;
+
+  &__active-area {
+    pointer-events: none;
+  }
+
+  &__body {
+    width: 21.5rem;
+    height: 7rem;
+    background-color: darken(color(000), 1%);
+    padding: 1rem;
+    border-radius: 0.4em;
+    pointer-events: initial;
+    box-shadow: 0.5rem 0.5rem 1.5rem rgba(black, 0.2);
+  }
+
+  &__border {
+    width: 100%;
+    height: 100%;
+    border: solid 3px color(200);
+    border-radius: 0.25em;
+    @include flex(space-evenly, center);
+  }
+
+  &__play-btn {
+    @include flex(center, center);
+    height: 100%;
+    aspect-ratio: 1;
+    cursor: pointer;
+    transition: trans(400);
+    padding: 0.7rem;
+
+    svg {
+      fill: color(200);
+    }
+
+    &:hover {
+      opacity: 0.7;
+      transform: scale(1.05);
+    }
+
+    &:active {
+      transition: none;
+      transform: scale(0.8);
+    }
+  }
+
+  &__seeker {
+    height: 50%;
+    width: 60%;
+    position: relative;
+    cursor: pointer;
+    @include flex(center, center);
+
+    &-bar {
+      height: 5px;
+      width: 100%;
+      background-color: color(200);
+      border-radius: 100vw;
+    }
+
+    &-ball {
+      width: 1.2rem;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background-color: darken(color(200), 10%);
+      @include absolute(50%, 0);
+      transform: translate(-50%, -55%);
+      cursor: pointer;
+      transition: trans(400);
+
+      &:hover {
+        background-color: lighten(color(200), 10%);
+      }
+    }
+
+    &-progress-bar {
+      width: 0;
+      height: 100%;
+      background-color: lightcoral;
+      border-radius: 100vw;
+    }
+  }
+}
+
+.pause-icon {
+  height: 100%;
+  aspect-ratio: 1.2 / 2;
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  color: color(200);
+
+  div {
+    height: 70%;
+    width: 0.6rem;
+    background-color: currentColor;
+    border-radius: 100vw;
+  }
+}
+
+/****************************************
+     FIXED MUSIC PLAYER
+****************************************/
+.player--fixed {
+  transform: unset !important;
+  z-index: 500 !important;
+  position: fixed !important;
+  inset: auto !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+
+  .player__body {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .player__active-area {
+    max-width: 120rem;
+    margin: 0 auto;
+
+    @include respondW(max, 1300) {
+      width: 92vw;
+    }
+
+    @include respondW(max, phone) {
+      @include flex(center);
+    }
+  }
+}

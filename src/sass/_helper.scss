@@ -105,9 +105,11 @@
 @function gradient($gradient-name) {
   @return map-get($gradients, $gradient-name);
 }
-@function marbo($margin-bottom) {
-  @return map-get($marbo, $margin-bottom);
+
+@function mb($margin) {
+  @return map-get($margin-bottom, $margin);
 }
+
 @function trans($transition-name) {
   @return map-get($transitions, $transition-name);
 }

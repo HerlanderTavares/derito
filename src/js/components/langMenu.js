@@ -1,7 +1,9 @@
 import icons from 'url:../../imgs/flags.svg';
+import {ANIMATION_TIME, DISPLAY_TIME, timer} from '../helper.js';
 
 class Language {
   allBtns = document.querySelectorAll('.lang-menu__btn');
+  allItems = document.querySelectorAll('.lang-menu__item');
 
   constructor() {
     this.init();
@@ -10,6 +12,7 @@ class Language {
   interact() {
     this.desktop();
     this.mobile();
+    this.pauseLinks();
   }
 
   init() {
@@ -32,6 +35,22 @@ class Language {
   }
 
   /****************************************
+       PAUSE LINKS
+  ****************************************/
+  pauseLinks() {
+    const mainFolder = '../../../site_';
+    this.allItems.forEach(item => {
+      item.addEventListener('click', function (e) {
+        e.preventDefault();
+        const lang = item.dataset.lang;
+        const site = lang == 'english' ? `${mainFolder}index.html` : `${mainFolder}${lang}.html`;
+
+        setTimeout(() => window.open(site, '_self'), ANIMATION_TIME + 150);
+      });
+    });
+  }
+
+  /****************************************
        DESKTOP MENU
   ****************************************/
   desktopMenu = document.querySelector("[data-menu='desktop']");
@@ -49,14 +68,22 @@ class Language {
     btn.addEventListener('pointerdown', function () {
       setTimeout(() => {
         parent.desktopOpen();
-        setTimeout(() => menu.classList.add('opened'), 300);
-      }, 200);
+        setTimeout(() => menu.classList.add('opened'), ANIMATION_TIME);
+      }, ANIMATION_TIME - 100);
     });
 
     //Close On Click
     document.body.addEventListener('click', function () {
       if (menu.classList.contains('opened')) {
-        parent.desktopClose();
+        setTimeout(() => parent.desktopClose(), ANIMATION_TIME / 2);
+        menu.classList.remove('opened');
+      }
+    });
+
+    //Close On Scroll
+    document.addEventListener('scroll', function () {
+      if (menu.classList.contains('opened')) {
+        setTimeout(() => parent.desktopClose(), ANIMATION_TIME / 2);
         menu.classList.remove('opened');
       }
     });
@@ -69,12 +96,17 @@ class Language {
     //Remove Button
     this.desktopBtn.style.opacity = 0;
     this.desktopBtn.style.pointerEvents = 'none';
-    this.desktopMenu.style.animation = `pan 1s ease-out infinite alternate paused`;
+    this.desktopMenu.style.animation = `none`;
 
     //Show Menu
     this.desktopMenu.style.transform = `translateX(-50%)`;
     this.desktopList.style.gap = '2rem';
     this.desktopList.style.opacity = 1;
+    this.desktopList.style.pointerEvents = 'initial';
+
+    this.desktopItems.forEach(item => {
+      if (item.dataset.lang == document.body.dataset.lang) item.style.pointerEvents = 'none';
+    });
   }
 
   desktopClose() {
@@ -87,8 +119,9 @@ class Language {
     //Remove Menu
     const itemWidth = Number.parseFloat(getComputedStyle(this.desktopItems[0]).width);
     this.desktopList.style.gap = 0;
+    this.desktopList.style.pointerEvents = 'none';
     this.desktopMenu.style.transform = `translateX(-${itemWidth / 2}px)`;
-    setTimeout(() => (this.desktopList.style.opacity = 0), 300);
+    setTimeout(() => (this.desktopList.style.opacity = 0), ANIMATION_TIME);
 
     //Show Button
     this.desktopBtn.style.opacity = 1;
@@ -116,7 +149,6 @@ class Language {
     mediaQuery.addEventListener('change', function (e) {
       if (e.matches) checkQuery();
       else checkQuery();
-      console.log(smallPhone);
     });
 
     //Initial State
@@ -124,12 +156,10 @@ class Language {
 
     //Open On Click
     btn.addEventListener('pointerdown', function (e) {
-      console.log(e.target);
-
       setTimeout(() => {
         runOpen();
-        setTimeout(() => menu.classList.add('opened'), 300);
-      }, 100);
+        setTimeout(() => menu.classList.add('opened'), ANIMATION_TIME);
+      }, DISPLAY_TIME);
     });
 
     //Close On Click
@@ -140,16 +170,24 @@ class Language {
       }
     });
 
-    this.mobileItems.forEach(item => {
-      if (item.dataset.lang == document.body.dataset.lang) {
-        item.style.zIndex = 5;
-        item.style.pointerEvents = 'none';
+    //Close On Scroll
+    document.addEventListener('scroll', function () {
+      if (menu.classList.contains('opened')) {
+        setTimeout(() => runClose(), ANIMATION_TIME / 2);
+        menu.classList.remove('opened');
       }
     });
 
     function runOpen() {
       if (smallPhone == true) parent.mobileOpen('vertical');
       else parent.mobileOpen('horizontal');
+
+      parent.mobileItems.forEach(item => {
+        if (item.dataset.lang == document.body.dataset.lang) {
+          item.style.zIndex = 5;
+          item.style.pointerEvents = 'none';
+        }
+      });
     }
 
     function runClose() {
@@ -184,6 +222,11 @@ class Language {
     //Show Menu
     this.mobileList.style.gap = '2rem';
     this.mobileList.style.opacity = 1;
+    this.mobileList.style.pointerEvents = 'initial';
+
+    this.mobileItems.forEach(item => {
+      if (item.dataset.lang == document.body.dataset.lang) item.style.pointerEvents = 'none';
+    });
   }
 
   mobileClose(direction) {
@@ -213,7 +256,8 @@ class Language {
 
     //Remove Menu
     this.mobileList.style.gap = 0;
-    setTimeout(() => (this.mobileList.style.opacity = 0), 300);
+    this.mobileList.style.pointerEvents = 'none';
+    setTimeout(() => (this.mobileList.style.opacity = 0), ANIMATION_TIME);
 
     //Show Button
     this.mobileBtn.style.opacity = 1;

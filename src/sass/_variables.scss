@@ -19,6 +19,7 @@ $font-weights: (
 //BUG change colors
 $colors: (
   000: white,
+  50: darken(white, 1%),
   100: #f2f2f2,
   200: #8c6450,
   400: #66493a,
@@ -37,7 +38,7 @@ $gradients: (
 /****************************************
      WHITESPACE
 ****************************************/
-$marbo: (
+$margin-bottom: (
   200: 12rem,
   300: 20rem,
   400: 30rem,
@@ -64,14 +65,14 @@ $queries: (
 
   //Other Breakpoints
   1300: 81.25em,
-  500: 31.25em,
-  400: 25em,
-
-  //Height Breakpoints
-  900: 56.25em,
+  1100: 68.75em,
+  800: 50em,
   850: 53.125em,
   750: 46.875em,
-  600: 37.5em,
+  500: 31.25em,
+  480: 30em,
+  400: 25em,
+  300: 18.75em,
 );
 
 // EMs are used for media queries

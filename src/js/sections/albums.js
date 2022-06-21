@@ -1,3 +1,5 @@
+import {timer} from '../helper.js';
+
 class Albums {
   constructor() {
     this.init();

@@ -1,5 +1,6 @@
 import {initial} from 'lodash';
 import {TRUE} from 'sass';
+import {timer, ANIMATION_TIME, DISPLAY_TIME} from '../helper.js';
 
 class Navigation {
   header = document.querySelector('.header');
@@ -86,7 +87,7 @@ class Navigation {
    UTILITIES
    ****************************************/
   observeHero(func) {
-    const hero = new IntersectionObserver(callback, {threshold: 0.1});
+    const hero = new IntersectionObserver(callback, {threshold: 0.2});
     hero.observe(parent.header);
 
     function callback(entries) {
@@ -127,7 +128,7 @@ class Navigation {
       parent.nav.style.display = 'none';
       parent.nav.style.transform = translateClose;
       parent.nav.classList.add('navbar--fixed');
-      setTimeout(() => (parent.nav.style.display = 'flex'), 300);
+      setTimeout(() => (parent.nav.style.display = 'flex'), ANIMATION_TIME);
     }
 
     if (state == 'off') {

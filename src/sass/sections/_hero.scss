@@ -11,8 +11,8 @@
   }
 
   @include respondPhone() {
-    padding: 2rem;
-    margin-bottom: -2rem;
+    padding: 0;
+    margin-bottom: 0;
   }
 
   &__active-area {
@@ -52,6 +52,7 @@ $hero__border-radius: 2.7rem;
     @include flex(center, center);
     z-index: 5;
     position: relative;
+    height: auto;
   }
 
   &__title {
@@ -102,6 +103,7 @@ $hero__border-radius: 2.7rem;
     font-size: 2.3rem;
     font-weight: weight(medium);
     transition: trans(400);
+    text-align: center;
 
     //Javascript
     opacity: 0;
@@ -174,6 +176,7 @@ $hero__border-radius: 2.7rem;
 
     @include respondW(max, phone) {
       width: 100%;
+      height: 20rem;
     }
 
     @include respondLandscape(phone) {
@@ -201,9 +204,6 @@ $hero__border-radius: 2.7rem;
     @include respondPortrait() {
       @include respondW(max, tab-p) {
         transform: translateX(-30%);
-      }
-      @include respondW(max, phone) {
-        transform: translateX(-40%);
       }
     }
 
@@ -233,5 +233,13 @@ $hero__border-radius: 2.7rem;
       bottom: auto;
       top: 2rem;
     }
+
+    @include respondPhone() {
+      border-radius: 0;
+    }
+  }
+
+  @include respondPhone() {
+    border-radius: 0;
   }
 }
