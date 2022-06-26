@@ -5,6 +5,7 @@ import ScrollReveal from 'scrollreveal/dist/scrollreveal.js';
 class Music {
   section = document.querySelector('.music');
   allCards = document.querySelectorAll('.music-card');
+  afrojazzCard = document.querySelector('.afrojazz');
   mobileVersion;
   sectionInView;
 
@@ -12,7 +13,22 @@ class Music {
     this.init();
   }
 
-  init() {}
+  init() {
+    const parent = this;
+    modifyCard(mediaQuery(1100), parent.afrojazzCard, 'landscape');
+    modifyCard(mediaQuery(750), parent.afrojazzCard, 'left');
+
+    mediaQuery(1100).addEventListener('change', e =>
+      modifyCard(e, parent.afrojazzCard, 'landscape')
+    );
+
+    mediaQuery(750).addEventListener('change', e => modifyCard(e, parent.afrojazzCard, 'left'));
+
+    function modifyCard(query, card, modClass) {
+      if (query.matches) card.classList.remove(modClass);
+      else card.classList.add(modClass);
+    }
+  }
 
   interact() {
     musicPlayer.togglePlayer();
@@ -20,7 +36,6 @@ class Music {
     musicPlayer.updateProgress();
 
     this.allCards.forEach(card => {
-      this.parallax(card);
       this.learnMore(card);
       this.scrollReveal(card);
       this.fixedPlayer(card);
@@ -53,28 +68,58 @@ class Music {
       const btn = e.target.closest('.music-card__learn');
 
       if (!btn) return;
-      content.classList.add('content-open');
+      content.style.transform = 'scaleX(1)';
       btn.style.opacity = 0;
     });
 
     document.addEventListener('scroll', function () {
-      content.classList.remove('content-open');
-      btn.style.opacity = 1;
+      content.style.transform = null;
+      setTimeout(() => (btn.style.opacity = null), ANIMATION_TIME);
     });
   }
 
   scrollReveal(card) {
-    const element = card.querySelector('.music-card__container');
+    const img = card.querySelector('.music-card__img');
+    const bkg = card.querySelector('.music-card__bkg');
+    const content = card.querySelector('.music-card__content');
+    const titles = card.querySelectorAll('.music-card__title');
+    const player = card.querySelector('.player');
+    const learnBtn = card.querySelector('.music-card__learn');
 
-    const options = {
-      delay: 500,
-      origin: 'bottom',
-      distance: '50px',
-      duration: 1000,
-      mobile: true,
-    };
+    reveal(bkg, 200);
+    reveal(img, 400);
+    reveal(content, 400);
+    titles.forEach(title => reveal(title, 500));
+    reveal(learnBtn, 600);
+    reveal(player, 700, removeTransform);
 
-    ScrollReveal().reveal(element, options);
+    function reveal(
+      element,
+      time = 300,
+      afterReveal = null,
+      options = {
+        delay: time,
+        origin: 'bottom',
+        distance: '50px',
+        duration: 1000,
+        mobile: true,
+        afterReveal: afterReveal,
+      }
+    ) {
+      const mainOptions = {
+        delay: time,
+        origin: 'bottom',
+        distance: '50px',
+        duration: 1000,
+        mobile: true,
+      };
+
+      ScrollReveal().reveal(element, options);
+    }
+
+    function removeTransform() {
+      player.style.transform = null;
+    }
   }
 
   parallax(card) {
@@ -91,7 +136,7 @@ class Music {
     parent.observeSection(run);
 
     mediaQuery(1100).addEventListener('change', function (e) {
-      parent.checkQuery(mediaQuery(1100));
+      parent.checkQuery(e);
       run();
     });
 

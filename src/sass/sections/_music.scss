@@ -1,10 +1,6 @@
 .music {
   margin-bottom: mb(400);
 
-  .active-area {
-    // background-color: lightgrey;
-  }
-
   &-grid {
     display: grid;
     grid-template-columns: max-content max-content;

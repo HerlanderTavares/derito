@@ -10,7 +10,7 @@
     <title>Derito</title>
   </head>
 
-  <body data-lang="english">
+  <body data-lang="english" data-root="${rootContext}">
     <header class="header">
       <div class="header__active-area">
         <nav class="navbar" data-side="right">
@@ -63,6 +63,11 @@
                     </svg>
                   </a>
                 </li>
+                <li class="lang-menu__item preload" data-flag-number="4" data-lang="german">
+                  <a class="lang-menu__link" href="/site_german.html">
+                    <svg class="flag"><use href="/src/imgs/flags.svg#germany"></use></svg>
+                  </a>
+                </li>
               </ul>
 
               <button class="lang-menu__btn preload">
@@ -112,6 +117,11 @@
                 <li class="lang-menu__item preload" data-flag-number="3" data-lang="spanish">
                   <a class="lang-menu__link" href="/site_spanish.html">
                     <svg class="flag"><use href="/src/imgs/flags.svg#spain"></use></svg>
+                  </a>
+                </li>
+                <li class="lang-menu__item preload" data-flag-number="4" data-lang="german">
+                  <a class="lang-menu__link" href="/site_german.html">
+                    <svg class="flag"><use href="/src/imgs/flags.svg#germany"></use></svg>
                   </a>
                 </li>
               </ul>
@@ -182,15 +192,13 @@
 
               <button class="music-card__learn">
                 <span>Learn More</span>
-                <svg class="icon">
-                  <use href="/src/imgs/icons.svg#arrow-forward"></use>
-                </svg>
+                <svg class="icon"><use href="/src/imgs/icons.svg#arrow-forward"></use></svg>
               </button>
             </div>
             <!-- *********** Semba Card *********** -->
 
             <!-- *********** Afrojazz Card *********** -->
-            <div class="music-card afrojazz">
+            <div class="music-card afrojazz landscape left">
               <div class="music-card__container">
                 <div class="music-card__bkg"></div>
                 <div class="music-card__img"></div>
@@ -294,8 +302,51 @@
         </div>
       </section>
 
-      <section class="album" id="albums"
-        ><div class="active-area"> <h2>My Albums</h2></div>
+      <section class="album" id="albums">
+        <div class="album-bkg"></div>
+        <div class="active-area">
+          <div class="album-menu">
+            <div class="album-grid">
+              <button class="album__cover" data-album="saudade"></button>
+              <button class="album__cover" data-album="alison"></button>
+              <button class="album__cover" data-album="discernimento"></button>
+              <button class="album__cover" data-album="best-of"></button>
+            </div>
+
+            <div class="section-title">
+              <span class="section-title__main">My Albums</span>
+            </div>
+          </div>
+
+          <div class="album-container">
+            <div class="section-title">
+              <span class="section-title__main">My Albums</span>
+            </div>
+
+            <div class="carousel-menu">
+              <button class="carousel-menu__btn" data-btn="prev">
+                <svg class="icon"><use href="/src/imgs/icons.svg#arrow-back"></use></svg>
+              </button>
+              <div class="carousel-menu__crumbs">
+                <button>
+                  <span></span>
+                </button>
+                <button>
+                  <span></span>
+                </button>
+                <button>
+                  <span></span>
+                </button>
+                <button>
+                  <span></span>
+                </button>
+              </div>
+              <button class="carousel-menu__btn" data-btn="next">
+                <svg class="icon"><use href="/src/imgs/icons.svg#arrow-forward"></use></svg>
+              </button>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section class="journey" id="journey">

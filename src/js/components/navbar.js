@@ -122,7 +122,7 @@ class Navigation {
 
   displayNav(state) {
     const translateOpen = 'translateX(0)';
-    const translateClose = parent.navDirection == 'left' ? 'translateX(-100%)' : 'translateX(100%)';
+    const translateClose = parent.navDirection == 'left' ? 'translateX(-120%)' : 'translateX(120%)';
 
     if (state == 'on') {
       parent.nav.style.display = 'none';

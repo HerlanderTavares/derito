@@ -1,3 +1,177 @@
 .album {
-  @extend %testing-section;
+  background-color: color(100);
+  height: 110vh;
+  position: relative;
+
+  .active-area {
+    position: relative;
+    @include flex(center, center);
+  }
+
+  &-bkg {
+    width: 50%;
+    height: 100%;
+    background-color: darken(color(100), 5%);
+    clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%);
+    @include absolute(0, null, null, 0);
+    z-index: 1;
+    transition: trans(400);
+  }
+
+  .section-title {
+    text-align: right;
+    z-index: 2;
+    transition: trans(400);
+
+    &__sub {
+      color: color(200);
+    }
+  }
+
+  &-menu {
+    @include flex(space-between, center);
+    height: 100%;
+    width: 100%;
+    transition: trans(400);
+  }
+
+  &-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 4rem;
+    z-index: 10;
+  }
+
+  &__cover {
+    width: 25rem;
+    aspect-ratio: 1;
+    border-radius: 0.5em;
+    cursor: pointer;
+    transition: trans(400);
+    background-size: cover;
+    box-shadow: 0.5rem 0.5rem 1.5rem rgba(black, 0.2);
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0.7rem 0.7rem 3rem rgba(black, 0.1);
+    }
+
+    &:active {
+      transition: none;
+      transform: scale(0.95);
+    }
+
+    &[data-album='saudade'] {
+      background-image: url(/src/imgs/03-albums/saudade.jpg);
+    }
+
+    &[data-album='alison'] {
+      background-image: url(/src/imgs/03-albums/alison.jpg);
+    }
+
+    &[data-album='discernimento'] {
+      background-image: url(/src/imgs/03-albums/discernimento.jpg);
+    }
+
+    &[data-album='best-of'] {
+      background-image: url(/src/imgs/03-albums/best-of.jpg);
+    }
+  }
+}
+
+/****************************************
+     RESPONSIVE
+****************************************/
+
+@include respondW(max, tab-l) {
+  .album {
+    height: auto;
+
+    .active-area {
+      padding: 5rem;
+    }
+
+    &-bkg {
+      display: none;
+    }
+
+    .section-title {
+      order: 1;
+      text-align: center;
+
+      &__main {
+        font-size: 4rem;
+      }
+      &__sub {
+        font-size: 2rem;
+      }
+    }
+
+    &-menu {
+      flex-direction: column;
+      justify-content: space-evenly;
+      gap: 10rem;
+    }
+
+    &-grid {
+      order: 2;
+      margin-bottom: 10rem;
+    }
+  }
+}
+
+@include respondW(max, phone) {
+  .album {
+    .active-area {
+      padding: 0;
+      padding-top: 3rem;
+    }
+  }
+}
+
+@include respondH(max, 750) {
+  .album {
+    height: auto;
+
+    .active-area {
+      padding: 5rem;
+    }
+  }
+}
+
+@include respondH(max, 650) {
+  .album {
+    &-bkg {
+      display: none;
+    }
+
+    .section-title {
+      order: 1;
+      text-align: center;
+      &__main {
+        font-size: 4rem;
+      }
+      &__sub {
+        font-size: 2rem;
+      }
+    }
+
+    &-container {
+      flex-direction: column;
+      justify-content: center;
+      gap: 4rem;
+    }
+
+    &-grid {
+      width: 100%;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 1fr;
+      order: 2;
+    }
+
+    &__cover {
+      width: 100%;
+    }
+  }
 }

@@ -11,7 +11,7 @@
   }
 
   @include respondPhone() {
-    padding: 0;
+    padding: 2rem;
     margin-bottom: 0;
   }
 
@@ -233,13 +233,5 @@ $hero__border-radius: 2.7rem;
       bottom: auto;
       top: 2rem;
     }
-
-    @include respondPhone() {
-      border-radius: 0;
-    }
-  }
-
-  @include respondPhone() {
-    border-radius: 0;
   }
 }
