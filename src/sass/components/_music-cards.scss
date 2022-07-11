@@ -51,6 +51,7 @@ $card-offset: 3rem;
     box-shadow: 0.8rem 0.8rem 2.3rem rgba(black, 0.2);
     @include flex(center, center);
     transform-origin: 100% 100%;
+    transition: trans(400);
   }
 
   &__title {
@@ -222,7 +223,7 @@ $mobile-card-height: 38rem;
       bottom: 0;
       right: 0;
       box-shadow: none;
-      transition: trans(400);
+      transition: trans(200);
       transform: scaleX(0);
     }
 
@@ -333,6 +334,11 @@ $mobile-card-height: 38rem;
       height: 6rem;
       border-radius: 0.4em;
       border: solid 2px rgba(color(000), 0.6);
+
+      :active {
+        transition: none;
+        transform: scale(0.8);
+      }
 
       svg {
         display: none;

@@ -50,6 +50,7 @@
     outline: solid 3rem color(100);
     box-sizing: content-box;
     margin-top: -10rem;
+    background-size: cover;
   }
 
   &__title {
@@ -203,7 +204,7 @@
       @include flex(center, center);
 
       span {
-        width: 40%;
+        width: 30%;
         aspect-ratio: 1;
         border-radius: 50%;
         border: 2px solid color(400);
@@ -255,6 +256,7 @@
 
     &__platforms {
       order: 1;
+      width: 100%;
     }
 
     &__close-btn {
@@ -315,25 +317,27 @@
 
 @include respondW(max, 300) {
   .carousel-menu__crumbs {
-    gap: 2rem;
+    gap: 1rem;
 
     button {
-      width: 1.5rem;
-      border: solid 1px color(400);
+      width: 3rem;
+
+      span {
+        width: 60%;
+        border: solid 1px color(400);
+      }
     }
+  }
+}
+
+@include respondW(max, 280) {
+  .album__img {
+    outline: solid 1.5rem color(100);
   }
 }
 
 @include respondLandscape(850) {
   .album-container {
-    width: 90%;
-  }
-
-  .carousel-menu__btn[data-btn='prev'] {
-    transform: translateX(-40%);
-  }
-
-  .carousel-menu__btn[data-btn='next'] {
-    transform: translateX(40%);
+    width: 80%;
   }
 } ;

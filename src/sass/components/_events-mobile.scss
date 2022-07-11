@@ -1,0 +1,363 @@
+/****************************************
+      MAP RESET
+****************************************/
+@include respondW(max, 700) {
+  .events {
+    @include flex(center, center, column);
+
+    &-map {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: initial;
+      position: relative;
+
+      &__prompt {
+        display: none;
+      }
+
+      &__dropshadow {
+        @include drop-shadow(remove);
+      }
+
+      &__border {
+        border-radius: 0;
+        background-color: color(000);
+        -webkit-clip-path: none;
+        clip-path: none;
+      }
+
+      &__container {
+        width: 100%;
+        height: auto;
+        border-radius: 0;
+        background-image: none;
+        -webkit-clip-path: none;
+        clip-path: none;
+      }
+    }
+  }
+
+  /****************************************
+     CLOSE MAP DISABLED
+****************************************/
+  .events-map.close {
+    .events-map {
+      &__dropshadow {
+        transform: unset;
+      }
+
+      &__prompt {
+        display: none;
+      }
+
+      &__border,
+      &__container {
+        -webkit-clip-path: none;
+        clip-path: none;
+      }
+    }
+
+    .fold {
+      &__shadows,
+      &__dropshadows {
+        display: none;
+      }
+    }
+
+    .country {
+      opacity: 1;
+      pointer-events: initial;
+    }
+  }
+
+  /****************************************
+     SHADOWS DISABLED
+****************************************/
+  .fold {
+    &__shadows-container,
+    &__shadows,
+    &__dropshadows {
+      display: none;
+    }
+  }
+
+  /****************************************
+       MAP
+  ****************************************/
+  .events-map__container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    width: 80%;
+    aspect-ratio: 1 / 1.1;
+    grid-auto-rows: 1fr;
+  }
+
+  /****************************************
+     COUNTRY INFO
+  ****************************************/
+  .country {
+    position: initial;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 2rem;
+    align-items: start;
+    align-content: start;
+
+    &:hover {
+      transform: unset;
+      opacity: 0.5;
+
+      @media (hover: none) {
+        opacity: 1;
+      }
+    }
+
+    span {
+      font-size: 1.5rem;
+    }
+  }
+
+  /****************************************
+     COUNTRY BUTTONS
+  ****************************************/
+  .country__btn {
+    padding: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    pointer-events: initial;
+
+    &::before,
+    &::after {
+      display: none;
+    }
+
+    &:active {
+      transition: none;
+      transform: scale(0.8);
+    }
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  /****************************************
+     INFO MODALS
+  ****************************************/
+
+  .country {
+    &__modal {
+      @include flex(space-between, center, column);
+      width: 100%;
+      height: 100%;
+      aspect-ratio: initial;
+      position: initial;
+      pointer-events: initial;
+      grid-column: 1 / -1;
+      grid-row: 1 / -1;
+      z-index: 100;
+      padding: 1.2rem;
+      @include box-shadow(0.5, 0.5, 1, 0.4);
+    }
+  }
+
+  /****************************************
+     MODAL POSITIONING
+  ****************************************/
+  .country.left {
+    &-top {
+      .country__btn {
+        grid-column: 1;
+        grid-row: 1;
+      }
+    }
+
+    &-bottom {
+      .country__btn {
+        grid-column: 1;
+        grid-row: 3;
+      }
+    }
+  }
+
+  .country.right {
+    &-top {
+      .country__btn {
+        grid-column: 2;
+        grid-row: 1;
+      }
+    }
+
+    &-bottom {
+      .country__btn {
+        grid-column: 2;
+        grid-row: 3;
+      }
+    }
+  }
+
+  /****************************************
+     MODAL OPENING
+  ****************************************/
+  .country.open {
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+@include respondW(max, 550) {
+  .events-map__container {
+    grid-template-columns: repeat(3, 1fr);
+    aspect-ratio: 1 / 1.8;
+    width: 75%;
+    gap: 2rem;
+  }
+
+  /****************************************
+     COUNTRY INFO
+  ****************************************/
+  .country {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+  }
+
+  /****************************************
+     INFO MODALS
+****************************************/
+  .country {
+    &__modal {
+      padding: 2.5rem;
+    }
+
+    &__close-btn {
+      width: 5rem;
+    }
+
+    span {
+      font-size: 2rem;
+    }
+  }
+
+  /****************************************
+     MODAL POSITIONING
+  ****************************************/
+
+  /************** LEFT **************/
+  .country.left {
+    &-top {
+      .country__btn {
+        grid-column: 1;
+        grid-row: 1;
+      }
+    }
+
+    &-mid {
+      .country__btn {
+        grid-column: 1;
+        grid-row: 3;
+      }
+
+      .country__modal {
+        transform: unset;
+        transform: scale(0);
+        transform-origin: 0 75%;
+      }
+    }
+
+    &-bottom {
+      .country__btn {
+        grid-column: 1;
+        grid-row: 4;
+      }
+    }
+  }
+
+  /************** MIDDLE **************/
+  .country.mid {
+    &-top {
+      .country__btn {
+        grid-column: 2;
+        grid-row: 1;
+      }
+
+      .country__modal {
+        transform-origin: 50% 0;
+      }
+    }
+
+    &-mid {
+      .country__btn {
+        grid-column: 2;
+        grid-row: 3;
+      }
+
+      .country__modal {
+        transform-origin: 50% 75%;
+        transform: unset;
+        transform: scale(0);
+      }
+    }
+
+    &-bottom {
+      .country__btn {
+        grid-column: 2;
+        grid-row: 4;
+      }
+
+      .country__modal {
+        transform-origin: 50% 100%;
+      }
+    }
+  }
+
+  /************** RIGHT **************/
+  .country.right {
+    &-top {
+      .country__btn {
+        grid-column: 3;
+        grid-row: 1;
+      }
+    }
+
+    &-mid {
+      .country__btn {
+        grid-column: 3;
+        grid-row: 3;
+      }
+
+      .country__modal {
+        transform: unset;
+        transform: scale(0);
+        transform-origin: 100% 75%;
+      }
+    }
+
+    &-bottom {
+      .country__btn {
+        grid-column: 3;
+        grid-row: 4;
+      }
+    }
+  }
+
+  /****************************************
+     MODAL OPENING
+  ****************************************/
+  .country.open {
+    .country__modal {
+      transform: scale(1) !important;
+    }
+  }
+}
+
+@include respondW(max, 300) {
+  .events-map__container {
+    gap: 1rem;
+  }
+}

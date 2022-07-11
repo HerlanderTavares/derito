@@ -56,6 +56,7 @@ button {
   font-size: inherit;
   color: inherit;
   font-weight: inherit;
+  cursor: pointer;
 }
 
 $min-vh: 30rem;
@@ -88,17 +89,23 @@ $min-vh: 30rem;
   &__main {
     font-family: font(heading);
     text-transform: uppercase;
-    font-size: 4.8rem;
+    font-size: 4rem;
     color: color(200);
     font-weight: weight(light);
   }
 
   &__sub {
     text-transform: uppercase;
-    font-weight: weight(light);
+    font-weight: weight(thin);
     color: color(600);
     font-size: 2.8rem;
   }
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+  @include flex(stretch, stretch);
 }
 
 .icon {

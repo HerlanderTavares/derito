@@ -22,19 +22,7 @@
   }
 }
 
-@mixin grid($columns: null, $rows: null) {
-  display: grid;
-
-  @if $columns != null {
-    grid-template-columns: repeat($columns, 1fr);
-  }
-
-  @if $rows != null {
-    grid-template-rows: repeat($rows, 1fr);
-  }
-}
-
-@mixin drop-shadow($x: 1, $y: 1, $blur: 1, $opacity: 1) {
+@mixin drop-shadow($x: 1, $y: 1, $blur: 1, $opacity: 1, $color: black) {
   @if $x == remove {
     -webkit-filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0));
     filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0));
@@ -42,7 +30,15 @@
     -webkit-filter: drop-shadow(
       calc($x * 1rem) calc($y * 1rem) calc($blur * 1rem) rgba(0, 0, 0, $opacity)
     );
-    filter: drop-shadow(calc($x * 1rem) calc($y * 1rem) calc($blur * 1rem) rgba(0, 0, 0, $opacity));
+    filter: drop-shadow(calc($x * 1rem) calc($y * 1rem) calc($blur * 1rem) rgba($color, $opacity));
+  }
+}
+
+@mixin box-shadow($x: 1, $y: 1, $blur: 1, $opacity: 1) {
+  @if $x == remove {
+    box-shadow: 0 0 0 rgba(black, 0);
+  } @else {
+    box-shadow: calc($x * 1rem) calc($y * 1rem) calc($blur * 1rem) rgba(0, 0, 0, $opacity);
   }
 }
 

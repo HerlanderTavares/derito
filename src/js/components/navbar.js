@@ -1,6 +1,7 @@
 import {initial} from 'lodash';
 import {TRUE} from 'sass';
 import {timer, ANIMATION_TIME, DISPLAY_TIME} from '../helper.js';
+import {navLabels} from '../model.js';
 
 class Navigation {
   header = document.querySelector('.header');
@@ -31,6 +32,8 @@ class Navigation {
       if (!btn && !closeBtn) return;
       parent.closeNav();
     });
+
+    this.navLabels();
   }
 
   smoothScroll() {
@@ -81,6 +84,21 @@ class Navigation {
         });
       }
     }
+  }
+
+  navLabels() {
+    const language = document.body.dataset.lang;
+    const navItems = document.querySelectorAll(`.navbar__item`);
+
+    navItems.forEach(item => {
+      const id = item.dataset.nav;
+      const label = navLabels[id][language];
+      const link = item.querySelector('a');
+      const btn = item.querySelector('button');
+
+      if (link) link.textContent = label;
+      if (btn) btn.textContent = label;
+    });
   }
 
   /****************************************

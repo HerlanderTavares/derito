@@ -61,22 +61,6 @@
       transition: none;
       transform: scale(0.95);
     }
-
-    &[data-album='saudade'] {
-      background-image: url(/src/imgs/03-albums/saudade.jpg);
-    }
-
-    &[data-album='alison'] {
-      background-image: url(/src/imgs/03-albums/alison.jpg);
-    }
-
-    &[data-album='discernimento'] {
-      background-image: url(/src/imgs/03-albums/discernimento.jpg);
-    }
-
-    &[data-album='best-of'] {
-      background-image: url(/src/imgs/03-albums/best-of.jpg);
-    }
   }
 }
 
@@ -173,5 +157,20 @@
     &__cover {
       width: 100%;
     }
+  }
+}
+
+/****************************************
+     ALBUM IMAGES
+****************************************/
+$albums: ('saudade', 'alison', 'discernimento', 'best-of');
+
+@each $name in $albums {
+  ##{$name} .album__img {
+    background-image: url(/src/imgs/03-albums/#{$name}.jpg);
+  }
+
+  .album__cover[data-album='#{$name}'] {
+    background-image: url(/src/imgs/03-albums/#{$name}.jpg);
   }
 }

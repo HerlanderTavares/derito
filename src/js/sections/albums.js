@@ -1,12 +1,14 @@
-import {timer, ANIMATION_TIME, mediaQuery, DISPLAY_TIME} from '../helper.js';
+import {reveal, ANIMATION_TIME, mediaQuery, DISPLAY_TIME} from '../helper.js';
 import {albums} from '../model.js';
 import platforms from 'url:../../imgs/platforms.svg';
 import icons from 'url:../../imgs/icons.svg';
 
 class Albums {
   container = document.querySelector('.album-container');
+  crumbsContainer = document.querySelector('.carousel-menu__crumbs');
   menu = document.querySelector('.album-menu');
   bkg = document.querySelector('.album-bkg');
+  grid = document.querySelector('.album-grid');
   mobileVersion;
   albumNumber = 0;
 
@@ -14,23 +16,26 @@ class Albums {
     this.init();
   }
 
-  init() {
-    const menuCrumbs = document.querySelectorAll('.carousel-menu__crumbs button');
-    menuCrumbs.forEach(btn => btn.classList.remove('active'));
-    menuCrumbs[this.albumNumber].classList.add('active');
-  }
+  init() {}
 
   interact() {
     this.createAlbums();
     this.albumMenu();
     this.navigateAlbums();
+
+    const menuCrumbs = document.querySelectorAll('.carousel-menu__crumbs button');
+    menuCrumbs.forEach(btn => btn.classList.remove('active'));
+    menuCrumbs[this.albumNumber].classList.add('active');
+    reveal(this.grid, 300, 1200, 100);
   }
 
   createAlbums() {
     const parent = this;
     albums.forEach(album => {
       const html = this.cardMarkup(album);
+      const btn = '<button><span></span></button>';
       parent.container.insertAdjacentHTML('beforeend', html);
+      parent.crumbsContainer.insertAdjacentHTML('beforeend', btn);
     });
   }
 
@@ -198,11 +203,7 @@ class Albums {
 
     return `
     <div class="album__info" id="${album.name}">
-    <img
-      class="album__img"
-      src="${album.img}"
-      alt="Derito ${album.order} album cover: ${name(album.name)}"
-    />
+    <div class="album__img"></div>
 
     <h2 class="album__title">${name(album.name)}</h2>
 

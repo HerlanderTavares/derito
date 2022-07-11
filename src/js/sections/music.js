@@ -1,6 +1,7 @@
 import {timer, mediaQuery, ANIMATION_TIME} from '../helper.js';
 import musicPlayer from '../components/musicPlayer.js';
 import ScrollReveal from 'scrollreveal/dist/scrollreveal.js';
+import {musicStyles} from '../model.js';
 
 class Music {
   section = document.querySelector('.music');
@@ -40,6 +41,7 @@ class Music {
       this.scrollReveal(card);
       this.fixedPlayer(card);
       this.scrollReveal(card);
+      this.musicContent(card);
     });
   }
 
@@ -86,88 +88,44 @@ class Music {
     const player = card.querySelector('.player');
     const learnBtn = card.querySelector('.music-card__learn');
 
-    reveal(bkg, 200);
-    reveal(img, 400);
-    reveal(content, 400);
-    titles.forEach(title => reveal(title, 500));
-    reveal(learnBtn, 600);
-    reveal(player, 700, removeTransform);
+    reveal(bkg);
+    reveal(img, 100);
+    reveal(content, 100);
+    titles.forEach(title => reveal(title, 200));
+    reveal(learnBtn, 300);
+    reveal(player, 400, removeTransform);
 
     function reveal(
       element,
-      time = 300,
-      afterReveal = null,
+      time = 0,
+      afterReveal = function () {},
       options = {
         delay: time,
         origin: 'bottom',
         distance: '50px',
-        duration: 1000,
+        duration: 800,
         mobile: true,
         afterReveal: afterReveal,
       }
     ) {
-      const mainOptions = {
-        delay: time,
-        origin: 'bottom',
-        distance: '50px',
-        duration: 1000,
-        mobile: true,
-      };
-
       ScrollReveal().reveal(element, options);
     }
 
     function removeTransform() {
       player.style.transform = null;
+      content.style.transition = null;
+      learnBtn.style.transition = null;
+      titles.forEach(title => (title.style.transition = null));
     }
   }
 
-  parallax(card) {
-    //Variables
-    const parent = this;
-    const img = card.querySelector('.music-card__img');
-    const bkg = card.querySelector('.music-card__bkg');
-    const content = card.querySelector('.music-card__content');
-    const player = card.querySelector('.player');
-    const elements = [img, bkg, content, player];
+  musicContent(card) {
+    const language = document.body.dataset.lang;
+    const id = card.dataset.style;
+    const container = card.querySelector('.music-card__container p');
+    const paragraph = musicStyles[id][language];
 
-    //Run Hover Parallax Only on Desktop
-    this.checkQuery(mediaQuery(1100));
-    parent.observeSection(run);
-
-    mediaQuery(1100).addEventListener('change', function (e) {
-      parent.checkQuery(e);
-      run();
-    });
-
-    //Run Hover Parallax
-    function run() {
-      if (!parent.mobileVersion && parent.sectionInView) {
-        reset();
-        document.addEventListener('mousemove', mousemove);
-      } else {
-        reset();
-        document.removeEventListener('mousemove', mousemove);
-      }
-    }
-
-    //Event Listener Function
-    function mousemove(e) {
-      let x = e.clientX - window.innerWidth / 1.5;
-      let y = e.clientY - window.innerHeight / 1.5;
-
-      setTimeout(() => {
-        bkg.style.transform = `translateX(${x / 70}px) translateY(${y / 70}px)`;
-        img.style.transform = `translateX(${(x / 50) * -1}px) translateY(${(y / 50) * -1}px)`;
-        content.style.transform = `translateX(${(x / 25) * -1}px) translateY(${(y / 25) * -1}px)`;
-        player.style.transform = `translateX(${(x / 100) * -1}px) translateY(${(y / 100) * -1}px)`;
-      }, 200);
-    }
-
-    //Reset Elements to Initial Position
-    function reset() {
-      elements.forEach(element => (element.style.transform = 'unset'));
-    }
+    container.textContent = paragraph;
   }
 
   checkQuery(query) {

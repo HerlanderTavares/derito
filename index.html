@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="src/sass/main.scss" />
     <script type="module" defer src="/src/js/controller.js"></script>
+    <link rel="stylesheet" href="src/sass/main.scss" />
     <title>Derito</title>
   </head>
 
@@ -21,11 +21,21 @@
           </button>
 
           <ul class="navbar__list">
-            <li class="navbar__item"><a href="#subhero" class="navbar__link">My Music</a></li>
-            <li class="navbar__item"><a href="#albums" class="navbar__link">My Albums</a></li>
-            <li class="navbar__item"><a href="#journey" class="navbar__link">My Journey</a></li>
-            <li class="navbar__item"><a href="#gallery" class="navbar__link">Gallery</a></li>
-            <li class="navbar__item"><button class="navbar__btn">Contact</button></li>
+            <li class="navbar__item" data-nav="myMusic">
+              <a href="#subhero" class="navbar__link"></a>
+            </li>
+            <li class="navbar__item" data-nav="myAlbums">
+              <a href="#albums" class="navbar__link"></a>
+            </li>
+            <li class="navbar__item" data-nav="myJourney">
+              <a href="#journey" class="navbar__link"></a>
+            </li>
+            <li class="navbar__item" data-nav="gallery">
+              <a href="#gallery" class="navbar__link"></a>
+            </li>
+            <li class="navbar__item" data-nav="contact">
+              <button class="navbar__btn"></button>
+            </li>
           </ul>
         </nav>
 
@@ -149,19 +159,14 @@
             </div>
 
             <!-- *********** Semba Card *********** -->
-            <div class="music-card semba">
+            <div class="music-card semba" data-style="semba">
               <div class="music-card__container">
                 <div class="music-card__bkg"></div>
                 <div class="music-card__img"></div>
 
                 <div class="music-card__content">
                   <span class="music-card__title" data-title="content">Semba</span>
-                  <p>
-                    Africa is a continent filled with many different rich cultures and styles of
-                    music, but I gravitated to the styles that are more prominent in my birth
-                    country of Angola, such as Kilapanga, Rumba, Cumbia, Merengue, and our most
-                    well-known, Semba.
-                  </p>
+                  <p></p>
                 </div>
                 <span class="music-card__title" data-title="image">Semba</span>
               </div>
@@ -198,19 +203,14 @@
             <!-- *********** Semba Card *********** -->
 
             <!-- *********** Afrojazz Card *********** -->
-            <div class="music-card afrojazz landscape left">
+            <div class="music-card afrojazz landscape left" data-style="afrojazz">
               <div class="music-card__container">
                 <div class="music-card__bkg"></div>
                 <div class="music-card__img"></div>
 
                 <div class="music-card__content">
                   <span class="music-card__title" data-title="content">Afrojazz</span>
-                  <p
-                    >AfroJazz is a fusion between the African style of music and Jazz. This was a
-                    natural progression for me even from my original style, as I began adding Jazz
-                    chords and elements to my songs. The complexity of Jazz brought another flavour
-                    to my work, and revealed new possibilities.
-                  </p>
+                  <p></p>
                 </div>
                 <span class="music-card__title" data-title="image">Afrojazz</span>
               </div>
@@ -249,19 +249,14 @@
             <!-- *********** Afrojazz Card *********** -->
 
             <!-- *********** Afrobossa Card *********** -->
-            <div class="music-card afrobossa">
+            <div class="music-card afrobossa" data-style="afrobossa">
               <div class="music-card__container">
                 <div class="music-card__bkg"></div>
                 <div class="music-card__img"></div>
 
                 <div class="music-card__content">
                   <span class="music-card__title" data-title="content">Afrobossa</span>
-                  <p>
-                    AfroBossa is a fusion between Bossa Nova and African music. Bossa Nova is a
-                    child of Samba, a Brazilian style that has its roots in Africa, roots taken to
-                    Brazil during the slave trade. I created this style with the aim of bringing
-                    those roots back to Brazilian music.
-                  </p>
+                  <p></p>
                 </div>
                 <span class="music-card__title" data-title="image">Afrobossa</span>
               </div>
@@ -293,7 +288,7 @@
               <button class="music-card__learn">
                 <span>Learn More</span>
                 <svg class="icon">
-                  <use href="/src/imgs/icons.svg#arrow-back"></use>
+                  <use href="/src/imgs/icons.svg#arrow-forward"></use>
                 </svg>
               </button>
             </div>
@@ -327,20 +322,9 @@
               <button class="carousel-menu__btn" data-btn="prev">
                 <svg class="icon"><use href="/src/imgs/icons.svg#arrow-back"></use></svg>
               </button>
-              <div class="carousel-menu__crumbs">
-                <button>
-                  <span></span>
-                </button>
-                <button>
-                  <span></span>
-                </button>
-                <button>
-                  <span></span>
-                </button>
-                <button>
-                  <span></span>
-                </button>
-              </div>
+
+              <div class="carousel-menu__crumbs"></div>
+
               <button class="carousel-menu__btn" data-btn="next">
                 <svg class="icon"><use href="/src/imgs/icons.svg#arrow-forward"></use></svg>
               </button>
@@ -350,7 +334,112 @@
       </section>
 
       <section class="journey" id="journey">
-        <div class="active-area"> <h2>My Journey</h2></div>
+        <div class="active-area">
+          <div class="section-title">
+            <span class="section-title__main">My Journey</span>
+          </div>
+
+          <!-- **************************************
+               BIOGRAPHY
+          **************************************** -->
+          <div class="biography">
+            <h2 class="journey__subtitle">Biography</h2>
+            <div class="biography-info preload" data-bio="whoAmI">
+              <button class="biography-info__btn">
+                <span class="title">Who Am I</span>
+                <div class="img">
+                  <div class="pointer">
+                    <svg class="icon"><use href="/src/imgs/icons.svg#arrow-down"></use></svg>
+                  </div>
+                </div>
+              </button>
+              <div class="biography-info__content preload">
+                <span></span>
+                <p></p>
+              </div>
+              <button class="biography-info__back-btn preload">
+                <svg class="icon"><use href="/src/imgs/icons.svg#arrow-back"></use></svg>
+                <span>Back</span>
+              </button>
+            </div>
+
+            <div class="biography-info preload" data-bio="earlyDays">
+              <button class="biography-info__btn">
+                <span class="title">Early Days</span>
+                <div class="img">
+                  <div class="pointer">
+                    <svg class="icon"><use href="/src/imgs/icons.svg#arrow-down"></use></svg>
+                  </div>
+                </div>
+              </button>
+              <div class="biography-info__content preload">
+                <span></span>
+                <p></p>
+              </div>
+              <button class="biography-info__back-btn preload">
+                <svg class="icon"><use href="/src/imgs/icons.svg#arrow-back"></use></svg>
+                <span>Back</span>
+              </button>
+            </div>
+
+            <div class="biography-info preload" data-bio="myCareer">
+              <button class="biography-info__btn">
+                <span class="title">My Career</span>
+                <div class="img">
+                  <div class="pointer">
+                    <svg class="icon"><use href="/src/imgs/icons.svg#arrow-down"></use></svg>
+                  </div>
+                </div>
+              </button>
+              <div class="biography-info__content preload">
+                <span></span>
+                <p></p>
+              </div>
+              <button class="biography-info__back-btn preload">
+                <svg class="icon"><use href="/src/imgs/icons.svg#arrow-back"></use></svg>
+                <span>Back</span>
+              </button></div
+            >
+          </div>
+
+          <!-- **************************************
+               FEATURES
+          **************************************** -->
+          <div class="features">
+            <h2 class="journey__subtitle">Whom I've Met</h2>
+            <button class="features__nav-btn" data-btn="prev">
+              <svg class="icon"><use href="/src/imgs/icons.svg#arrow-back"></use></svg>
+            </button>
+
+            <div class="features-container"></div>
+
+            <button class="features__nav-btn" data-btn="next">
+              <svg class="icon"><use href="/src/imgs/icons.svg#arrow-forward"></use></svg>
+            </button>
+          </div>
+
+          <!-- **************************************
+               EVENTS
+          **************************************** -->
+          <div class="events">
+            <h2 class="journey__subtitle">Where I've Been</h2>
+
+            <!-- *********** Map *********** -->
+            <div class="events-map close">
+              <div class="events-map__prompt">
+                <span>Touch to Open</span>
+                <svg class="icon"><use href="/src/imgs/icons.svg#pointer"></use></svg>
+              </div>
+              <div class="events-map__dropshadow">
+                <div class="events-map__border">
+                  <div class="events-map__container"></div>
+                  <div class="fold__shadows-container"></div>
+                </div>
+              </div>
+            </div>
+            <!-- *********** Map *********** -->
+          </div>
+        </div>
       </section>
 
       <section class="gallery" id="gallery">
