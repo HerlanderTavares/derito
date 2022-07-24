@@ -21,7 +21,6 @@ class Features {
 
     features.forEach((feature, i) => {
       this.mobile(feature, i);
-      // this.mobileSmall(feature, i);
     });
   }
 
@@ -168,9 +167,7 @@ class Features {
 
     function changeClasses() {
       const newClass = `${posX}-${posY}`;
-      const prevClass = [...card.classList].find(c =>
-        c.includes('left') || c.includes('right') ? c : ''
-      );
+      const prevClass = [...card.classList].find(c => (c.includes('left') || c.includes('right') ? c : ''));
 
       if (prevClass) card.classList.remove(`${prevClass}`);
       if (cardWidth) {

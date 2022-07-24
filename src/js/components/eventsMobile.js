@@ -45,8 +45,6 @@ class Events_Mobile {
       setGrid();
     }
 
-    console.log(colSpan, rowSpan);
-
     /****************************************
          FUNCTIONS
     ****************************************/

@@ -6,6 +6,18 @@
   .active-area {
     position: relative;
     @include flex(center, center);
+
+    @include respondW(max, tab-l) {
+      padding: 5rem;
+    }
+
+    @include respondLandscape(750) {
+      padding: 5rem;
+    }
+
+    @include respondW(max, phone) {
+      padding: 0;
+    }
   }
 
   &-bkg {
@@ -72,10 +84,6 @@
   .album {
     height: auto;
 
-    .active-area {
-      padding: 5rem;
-    }
-
     &-bkg {
       display: none;
     }
@@ -105,26 +113,13 @@
   }
 }
 
-@include respondW(max, phone) {
-  .album {
-    .active-area {
-      padding: 0;
-      padding-top: 3rem;
-    }
-  }
-}
-
-@include respondH(max, 750) {
+@include respondLandscape(750) {
   .album {
     height: auto;
-
-    .active-area {
-      padding: 5rem;
-    }
   }
 }
 
-@include respondH(max, 650) {
+@include respondLandscape(650) {
   .album {
     &-bkg {
       display: none;

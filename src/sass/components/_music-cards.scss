@@ -355,7 +355,7 @@ $mobile-card-height: 38rem;
 @include respondW(max, 480) {
   .music-card {
     &__container {
-      width: 100%;
+      width: 85%;
       height: auto;
       aspect-ratio: 1;
     }

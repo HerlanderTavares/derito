@@ -109,6 +109,10 @@ $hero__border-radius: 2.7rem;
     opacity: 0;
     -webkit-filter: blur(4px);
     filter: blur(4px);
+
+    @include respondW(max, 300) {
+      font-size: 1.8rem;
+    }
   }
 
   @include respondH(max, desktop) {

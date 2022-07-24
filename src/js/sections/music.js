@@ -19,9 +19,7 @@ class Music {
     modifyCard(mediaQuery(1100), parent.afrojazzCard, 'landscape');
     modifyCard(mediaQuery(750), parent.afrojazzCard, 'left');
 
-    mediaQuery(1100).addEventListener('change', e =>
-      modifyCard(e, parent.afrojazzCard, 'landscape')
-    );
+    mediaQuery(1100).addEventListener('change', e => modifyCard(e, parent.afrojazzCard, 'landscape'));
 
     mediaQuery(750).addEventListener('change', e => modifyCard(e, parent.afrojazzCard, 'left'));
 

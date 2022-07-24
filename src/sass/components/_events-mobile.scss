@@ -241,6 +241,10 @@
 
     span {
       font-size: 2rem;
+
+      @include respondW(max, 280) {
+        font-size: 1.7rem;
+      }
     }
   }
 

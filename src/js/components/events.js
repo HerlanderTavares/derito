@@ -1,4 +1,4 @@
-import {timer, timerIf} from '../helper.js';
+import {mediaQuery, timer, timerIf} from '../helper.js';
 import {events} from '../model.js';
 import icons from 'url:../../imgs/icons.svg';
 import flags from 'url:../../imgs/flags.svg';
@@ -44,7 +44,7 @@ class Events {
   /************** Map **************/
   toggleMap() {
     const parent = this;
-    const query = matchMedia('(hover: hover)');
+    const query = mediaQuery(700, 'min');
 
     const onClick = () => {
       const isClosed = parent.map.classList.contains('close');
@@ -56,7 +56,7 @@ class Events {
 
     function callback() {
       const isClosed = parent.map.classList.contains('close');
-      if (!parent.mapInView && !isClosed) {
+      if (!parent.mapInView && !isClosed && query) {
         parent.map.classList.add('close');
 
         events.forEach(e => {

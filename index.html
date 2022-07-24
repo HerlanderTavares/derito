@@ -425,7 +425,7 @@
             <h2 class="journey__subtitle">Where I've Been</h2>
 
             <!-- *********** Map *********** -->
-            <div class="events-map close">
+            <div class="events-map">
               <div class="events-map__prompt">
                 <span>Touch to Open</span>
                 <svg class="icon"><use href="/src/imgs/icons.svg#pointer"></use></svg>
@@ -443,7 +443,50 @@
       </section>
 
       <section class="gallery" id="gallery">
-        <div class="active-area"> <h2>My Gallery</h2></div>
+        <div class="active-area">
+          <div class="section-title">
+            <span class="section-title__main">Gallery</span>
+          </div>
+          <div class="gallery-container photos">
+            <div class="gallery__switch">
+              <button class="gallery__switch--btn" data-switch="photos">
+                <svg class="icon"><use href="/src/imgs/icons.svg#tri-right"></use></svg>
+                <span>Photos</span>
+              </button>
+
+              <span class="separator">|</span>
+
+              <button class="gallery__switch--btn" data-switch="videos">
+                <span>Videos</span>
+                <svg class="icon"><use href="/src/imgs/icons.svg#tri-left"></use></svg>
+              </button>
+            </div>
+
+            <button class="gallery__nav-btn" data-gallery="photos" data-btn="prev">
+              <svg class="icon"><use href="/src/imgs/icons.svg#arrow-back"></use></svg>
+            </button>
+
+            <button class="gallery__nav-btn" data-gallery="videos" data-btn="prev">
+              <svg class="icon"><use href="/src/imgs/icons.svg#arrow-back"></use></svg>
+            </button>
+
+            <div class="gallery__photos-container" data-gallery="photos">
+              <div class="gallery__photos" data-photos="main"></div>
+            </div>
+
+            <div class="gallery-videos" data-gallery="videos"></div>
+
+            <div class="gallery-videos__menu" data-gallery="videos"></div>
+
+            <button class="gallery__nav-btn" data-gallery="videos" data-btn="next">
+              <svg class="icon"><use href="/src/imgs/icons.svg#arrow-forward"></use></svg>
+            </button>
+
+            <button class="gallery__nav-btn" data-gallery="photos" data-btn="next">
+              <svg class="icon"><use href="/src/imgs/icons.svg#arrow-forward"></use></svg>
+            </button>
+          </div>
+        </div>
       </section>
     </main>
 

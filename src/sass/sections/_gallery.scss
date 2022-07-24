@@ -1,3 +1,130 @@
 .gallery {
-  @extend %testing-section;
+  background-color: color(100);
+  padding: mb(200) 0;
+
+  .section-title {
+    text-align: center;
+    margin-bottom: mb(200);
+
+    @include respondW(max, 650) {
+      margin-bottom: mb(300);
+    }
+  }
+
+  &-container {
+    width: 90%;
+    aspect-ratio: 16 / 9;
+    background-color: color(000);
+    @include box-shadow(1, 1, 2.5, 0.1);
+    padding: 3rem;
+    border-radius: 1em;
+    position: relative;
+    margin: 0 auto;
+
+    &.photos {
+      .gallery__switch--btn[data-switch='photos'] svg {
+        opacity: 1;
+      }
+
+      & [data-gallery='videos'] {
+        display: none;
+      }
+    }
+
+    &.videos {
+      margin-bottom: mb(200);
+
+      .gallery__switch--btn[data-switch='videos'] svg {
+        opacity: 1;
+      }
+
+      & [data-gallery='photos'] {
+        display: none;
+      }
+    }
+
+    @include respondW(max, tab-p) {
+      width: 100%;
+    }
+
+    @include respondW(max, 650) {
+      padding: 1.5rem;
+    }
+  }
+
+  &__switch {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr max-content 1fr;
+    grid-auto-columns: 1fr;
+    @include absolute(0, 0);
+    transform: translate(5%, -150%);
+    gap: 2rem;
+    justify-items: center;
+
+    @include respondW(max, 650) {
+      left: 50%;
+      transform: unset;
+      transform: translate(-50%, -280%);
+    }
+
+    &--btn {
+      font-size: 2rem;
+      @include flex(center, center);
+      gap: 0.5rem;
+      position: relative;
+      transition: trans(400);
+      text-transform: uppercase;
+
+      &:hover {
+        opacity: 0.5;
+      }
+
+      &[data-switch='photos'] {
+        justify-self: end;
+      }
+
+      &[data-switch='videos'] {
+        justify-self: start;
+      }
+
+      svg {
+        width: 1em;
+        aspect-ratio: 1;
+        opacity: 0;
+      }
+    }
+
+    .separator {
+      font-size: 3rem;
+    }
+  }
+
+  &__nav-btn {
+    width: 7rem;
+    aspect-ratio: 1;
+    @include flex(stretch, stretch);
+    @include absolute(50%);
+    z-index: 100;
+
+    $moveX: 105%;
+
+    &[data-btn='next'] {
+      right: 0;
+      transform: translate($moveX, -50%);
+
+      &:active {
+        transform: translate($moveX, -50%) scale(0.8);
+      }
+    }
+
+    &[data-btn='prev'] {
+      left: 0;
+      transform: translate(-$moveX, -50%);
+
+      &:active {
+        transform: translate(-$moveX, -50%) scale(0.8);
+      }
+    }
+  }
 }

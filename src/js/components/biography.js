@@ -11,17 +11,9 @@ class Biography {
   init() {}
 
   interact() {
-    const language = 'french';
-    const bio = 'myCareer';
-    const paragraph = biography[bio].description[language];
-    const title = biography[bio].title[language];
-    const container = document.querySelectorAll('.biography-info__content p');
-    const titleSpan = document.querySelectorAll('.biography-info__content span');
-
-    container.forEach(c => (c.textContent = paragraph));
-    titleSpan.forEach(t => (t.textContent = title));
-
+    const bioCards = document.querySelectorAll('.biography-info');
     this.menu();
+    bioCards.forEach(card => this.bioInfo(card));
   }
 
   menu() {
@@ -32,7 +24,17 @@ class Biography {
     });
   }
 
-  bioInfo() {}
+  bioInfo(card) {
+    const language = document.body.dataset.lang;
+    const bio = card.dataset.bio;
+    const title = biography[bio].title[language];
+    const paragraph = biography[bio].description[language];
+    const container = card.querySelector('.biography-info__content p');
+    const titleSpan = card.querySelector('.biography-info__content span');
+
+    container.textContent = paragraph;
+    titleSpan.textContent = title;
+  }
 
   /****************************************
        HELPERS

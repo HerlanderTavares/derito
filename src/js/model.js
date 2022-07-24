@@ -453,7 +453,7 @@ export const events = [
     origin: setOrigin(91, 37),
     events: [
       {
-        year: 2003,
+        year: 2010,
         name: {default: 'Expo'},
         city: {default: 'shanghai', french: 'shanghaï', portuguese: 'xangai', german: 'schanghai'},
       },
@@ -691,5 +691,45 @@ export const events = [
         },
       },
     ],
+  },
+];
+
+/****************************************
+     GALLERY VIDEOS
+****************************************/
+export const videos = [
+  {
+    title: 'kissange',
+    link: 'BDFuNgHTb5w',
+  },
+
+  {
+    title: 'etu',
+    link: 'ttIrDPiMVxY',
+  },
+
+  {
+    title: 'saudade-que-nao-tive',
+    link: 'AFK-RSHBv8E',
+  },
+
+  {
+    title: 'mama-africa',
+    link: 'SnPs9EXZyLA',
+  },
+
+  {
+    title: 'nzambi-ngo',
+    link: 'gkjzqEcsuIM',
+  },
+
+  {
+    title: 'chega-de-saudade',
+    link: 'dHblLW_52Rg',
+  },
+
+  {
+    title: 'quitanda-da-vida',
+    link: 'ZOvvxDre6KA',
   },
 ];
