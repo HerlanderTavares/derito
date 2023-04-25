@@ -1,0 +1,72 @@
+@import '../../../helpers.scss';
+
+.biography {
+  @include flex($dir: column);
+  gap: 30rem;
+  margin-bottom: 30rem;
+
+  &__card {
+    width: 100%;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    grid-template-rows: 1fr max-content max-content 1fr;
+    gap: 2.5rem 5rem;
+
+    &[data-card='earlydays'] {
+      @include query(1050, width, min) {
+        direction: rtl;
+      }
+    }
+
+    h3 {
+      grid-row: 2;
+      text-transform: uppercase;
+      font-size: 3rem;
+      font-weight: weight(thin);
+    }
+
+    p {
+      grid-row: 3;
+      font-size: 2rem;
+      line-height: 2;
+    }
+  }
+
+  &__img {
+    width: 32rem;
+    aspect-ratio: 1;
+    background-size: cover;
+    grid-row: 1 / -1;
+    border-radius: 3rem;
+  }
+}
+
+/************** Queries **************/
+.biography {
+  @include query(1050) {
+    gap: 15rem;
+    margin-bottom: 15rem;
+
+    &__card {
+      grid-template-columns: 100%;
+      grid-template-rows: repeat(3, max-content);
+      justify-items: center;
+
+      h3 {
+        grid-row: 1;
+        text-align: center;
+      }
+
+      p {
+        grid-row: 3;
+        text-align: center;
+        font-size: 1.8rem;
+      }
+    }
+
+    &__img {
+      width: 28rem;
+      grid-row: 2;
+    }
+  }
+}

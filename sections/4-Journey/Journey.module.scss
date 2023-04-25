@@ -1,0 +1,24 @@
+@import '../helpers.scss';
+
+.journey {
+  padding: 30rem 0;
+
+  @include query(1050) {
+    padding: 15rem 0;
+  }
+
+  h2 {
+    text-align: right;
+    width: 100%;
+    margin-bottom: 30rem;
+
+    @include query(1050) {
+      text-align: center;
+      margin-bottom: 15rem;
+    }
+
+    @include query(645) {
+      font-size: clamp(3.3rem, 8vw, 7rem);
+    }
+  }
+}

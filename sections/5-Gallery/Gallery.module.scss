@@ -1,0 +1,385 @@
+@import '../helpers.scss';
+
+.gallery {
+  min-height: $vh;
+  height: $vh;
+  background-color: color(bkg2);
+  @extend %lines;
+  padding: 7rem 0;
+
+  &__header {
+    width: 100%;
+    @include flex-center;
+    font-size: 4.5rem;
+    grid-column: 2;
+
+    &--switch {
+      @include flex-center;
+      $size: 1em;
+      width: $size;
+      height: $size;
+      display: none;
+
+      &.active {
+        svg {
+          fill: rgba(color(font), 0.3) !important;
+        }
+      }
+    }
+
+    h2 {
+      align-self: center;
+      font-size: inherit;
+    }
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: max-content minmax(1px, 1fr) max-content;
+    grid-template-rows: max-content minmax(1px, 1fr) max-content;
+    height: 100%;
+    align-items: center;
+    justify-items: center;
+    gap: 3rem;
+  }
+
+  &__nav {
+    grid-row: 2;
+    $size: 7rem;
+    width: $size;
+    height: $size;
+    z-index: 10;
+
+    &[data-btn='prev'] {
+      grid-column: 1;
+    }
+
+    &[data-btn='next'] {
+      grid-column: 3;
+    }
+  }
+
+  &__photos {
+    width: 100%;
+    height: 100%;
+    overflow-x: scroll;
+    grid-column: 2;
+    grid-row: 2;
+    @extend %no-scrollbar;
+    scroll-behavior: smooth;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    grid-template-rows: repeat(3, 1fr);
+    grid-auto-columns: minmax(10rem, 1fr);
+    grid-auto-flow: column;
+    gap: 3rem;
+    border-radius: 1.5rem;
+  }
+
+  &__videos {
+    width: 100%;
+    grid-column: 2;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: 100%;
+    align-items: center;
+    justify-items: center;
+    aspect-ratio: 16 / 9;
+  }
+
+  &__switch {
+    grid-row: 3;
+    grid-column: 2;
+    color: color(font);
+    font-size: 2rem;
+    text-transform: uppercase;
+    border: solid 2px color(font);
+    padding: 2rem;
+    border-radius: 0.7rem;
+  }
+}
+
+/************** Landscape **************/
+.gallery[data-gallery='photos'] {
+  @include landscape(710) {
+    padding: 1rem 2rem;
+    padding-top: 2rem;
+  }
+
+  .container {
+    @include landscape(710) {
+      max-width: 100%;
+      width: 100%;
+      gap: 2rem 1rem;
+    }
+  }
+
+  .gallery {
+    &__photos {
+      @include landscape(710) {
+        gap: 2rem;
+      }
+    }
+
+    &__header {
+      @include query(1000) {
+        justify-content: space-between;
+
+        &--switch {
+          display: flex;
+        }
+      }
+
+      @include landscape(710) {
+        font-size: 3.5rem;
+        justify-content: space-between;
+
+        &--switch {
+          display: flex;
+        }
+      }
+    }
+
+    &__nav {
+      @include landscape(710) {
+        $size: 5rem;
+        width: $size;
+        height: $size;
+      }
+    }
+
+    &__switch {
+      @include query(1000) {
+        display: none;
+      }
+
+      @include landscape(710) {
+        display: none;
+      }
+    }
+  }
+}
+
+.gallery[data-gallery='videos'] {
+  @include landscape(720) {
+    padding: 4rem;
+  }
+
+  @include landscape(485) {
+    padding: 1rem;
+    padding-top: 2rem;
+  }
+
+  @include landscape(390) {
+    padding: 1rem;
+  }
+
+  .container {
+    @include landscape(905) {
+      grid-template-columns: max-content 1fr max-content;
+      grid-template-rows: max-content 1fr;
+      justify-content: center;
+    }
+
+    @include landscape(720) {
+      width: 100%;
+    }
+  }
+
+  .gallery {
+    &__switch {
+      @include landscape(905) {
+        display: none;
+      }
+    }
+
+    &__videos {
+      @include landscape(835) {
+        height: 100%;
+        aspect-ratio: unset;
+      }
+    }
+
+    &__header {
+      @include landscape(905) {
+        justify-content: space-between;
+
+        &--switch {
+          display: flex;
+        }
+      }
+
+      @include landscape(590) {
+        font-size: 4rem;
+      }
+
+      @include landscape(390) {
+        font-size: 3.2rem;
+      }
+    }
+
+    &__nav {
+      @include landscape(650) {
+        $size: 5rem;
+        width: $size;
+        height: $size;
+      }
+    }
+  }
+}
+
+/************** Vertical **************/
+.gallery[data-gallery='photos'] {
+  @media (orientation: portrait) {
+    padding: 4rem 0;
+  }
+
+  .container {
+    @media (orientation: portrait) {
+      grid-template-rows: max-content max-content minmax(1px, 1fr) max-content;
+      grid-template-columns: 100%;
+      gap: 1rem;
+    }
+  }
+
+  .gallery {
+    &__nav {
+      @media (orientation: portrait) {
+        grid-row: 2;
+        $size: 7rem;
+        width: $size;
+        height: $size;
+        rotate: 90deg;
+
+        &[data-btn='prev'] {
+          grid-column: 1;
+          grid-row: 2;
+        }
+
+        &[data-btn='next'] {
+          grid-column: 1;
+          grid-row: 4;
+        }
+      }
+    }
+
+    &__header {
+      @media (orientation: portrait) {
+        grid-column: 1;
+        justify-content: space-between;
+
+        &--switch {
+          display: flex;
+        }
+      }
+    }
+
+    &__photos {
+      @media (orientation: portrait) {
+        grid-row: 3;
+        grid-column: 1;
+        width: 100%;
+        height: 100%;
+
+        grid-template-rows: repeat(auto-fill, minmax(20rem, 1fr));
+        grid-auto-rows: minmax(20rem, 1fr);
+        grid-template-columns: repeat(5, minmax(1px, 1fr));
+        gap: 1.5rem;
+        grid-auto-flow: row;
+        overflow-x: hidden;
+        overflow-y: scroll;
+      }
+
+      @include portrait(650) {
+        grid-template-rows: repeat(auto-fill, minmax(10rem, 1fr));
+        grid-auto-rows: minmax(10rem, 1fr);
+      }
+    }
+
+    &__switch {
+      @media (orientation: portrait) {
+        display: none;
+      }
+    }
+  }
+}
+
+.gallery[data-gallery='videos'] {
+  @include portrait(725) {
+    padding: 1.5rem;
+  }
+
+  .container {
+    @media (orientation: portrait) {
+      grid-template-rows: repeat(3, max-content);
+      align-content: center;
+      width: 100%;
+      row-gap: 7rem;
+    }
+
+    @include portrait(390) {
+      column-gap: 1.5rem;
+    }
+  }
+
+  .gallery {
+    &__nav {
+      @include portrait(850) {
+        $size: 5rem;
+        width: $size;
+        height: $size;
+      }
+
+      @include portrait(725) {
+        grid-row: 3;
+      }
+    }
+
+    &__videos {
+      @include portrait(725) {
+        grid-column: 1 / -1;
+      }
+    }
+
+    &__header {
+      @include query(725) {
+        justify-content: space-between;
+        grid-column: 1 / -1;
+        max-width: 50rem;
+
+        &--switch {
+          display: flex;
+        }
+      }
+    }
+
+    &__switch {
+      @include portrait(725) {
+        display: none;
+      }
+    }
+  }
+}
+
+.circles {
+  width: 100%;
+  max-width: 30rem;
+  @include flex(space-between, center);
+  display: none;
+
+  @include query(725) {
+    display: flex;
+  }
+
+  span {
+    width: 1.5rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: solid 2px color(font);
+
+    &.active {
+      background-color: rgba(color(font), 0.5);
+    }
+  }
+}

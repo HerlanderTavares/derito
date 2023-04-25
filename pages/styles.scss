@@ -1,0 +1,104 @@
+@import '../sections/helpers.scss';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+html {
+  font-size: 62.5%;
+  min-width: 33rem;
+  min-height: 33rem;
+}
+
+body {
+  font-size: 1.5rem;
+  color: color(font);
+  font-family: font(main);
+  font-weight: weight(regular);
+  overflow-x: hidden;
+  background: black;
+
+  width: 100%;
+  height: 100%;
+  min-width: 33rem;
+  min-height: 33rem;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  &:link,
+  &:visited {
+    text-decoration: none;
+  }
+}
+
+img {
+  @extend %no-select;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+
+  &:active {
+    transform-origin: 50% 50%;
+    scale: 0.8;
+    transition: none;
+  }
+}
+
+section {
+  position: relative;
+}
+
+svg {
+  pointer-events: none;
+}
+
+.active-area {
+  max-width: 120rem;
+  width: 85%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: font(heading);
+  font-size: 6rem;
+  text-transform: uppercase;
+  font-weight: weight(medium);
+  width: fit-content;
+
+  background: linear-gradient(to left, transparent, 20%, color(font));
+  background-clip: text;
+  color: transparent;
+
+  &.v {
+    background: linear-gradient(to top, transparent, 50%, color(font));
+    background-clip: text;
+    color: transparent;
+  }
+
+  @include explorer() {
+    color: color(font);
+    background: none;
+    background-clip: none;
+  }
+}

@@ -1,0 +1,126 @@
+@import '../../../helpers.scss';
+
+.menu {
+  display: none;
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  justify-items: end;
+  align-items: start;
+
+  @include landscape(810) {
+    display: grid;
+  }
+
+  %activate {
+    opacity: 0;
+    pointer-events: none;
+
+    &.activate {
+      opacity: 1;
+      pointer-events: initial;
+    }
+  }
+
+  &__btn {
+    display: flex;
+    gap: 1.3rem;
+    @extend %btn;
+    grid-column: 1;
+    grid-row: 1;
+    @extend %activate;
+    transition: opacity 300ms ease-out;
+
+    span {
+      width: 1.2rem;
+      border-radius: 50%;
+      aspect-ratio: 1;
+      background-color: color(font);
+      pointer-events: none;
+    }
+  }
+
+  &__dropdown {
+    grid-column: 1;
+    grid-row: 1;
+    background-color: white;
+    @include flex(center, flex-end, column);
+    padding: 3rem;
+    gap: 1rem;
+    border-radius: 1.5rem;
+    transition: opacity 300ms ease-out;
+    @extend %activate;
+
+    button {
+      width: 100%;
+      text-align: right;
+      font-size: 2rem;
+      padding: 0.5rem 0.5rem;
+      font-weight: weight(medium);
+      color: color(bkg);
+
+      &:active {
+        background-color: rgba(color(bkg), 0.4);
+        scale: unset;
+      }
+    }
+  }
+
+  &__platforms {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 1fr max-content 1fr;
+    gap: 2.5rem;
+    transition: opacity 300ms ease-out;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(black, 0.4);
+    backdrop-filter: blur(10px);
+    justify-items: center;
+  }
+
+  &__links {
+    @include flex-center;
+    gap: 2rem;
+    grid-row: 2;
+  }
+
+  &__link {
+    width: 7rem;
+    aspect-ratio: 1 !important;
+    padding: 1.5rem;
+    @include flex-center;
+    border-radius: 10%;
+    @extend %btn;
+
+    svg {
+      fill: white;
+    }
+
+    &[data-link='spotify'] {
+      background: linear-gradient(to right, hsl(141, 84%, 40%), hsl(141, 85%, 35%));
+    }
+
+    &[data-link='apple'] {
+      background: linear-gradient(to right, hsl(351, 95%, 70%), hsl(353, 96%, 55%));
+    }
+
+    &[data-link='amazon'] {
+      background: linear-gradient(to right, hsl(256, 100%, 50%), hsl(248, 55%, 30%));
+    }
+
+    &[data-link='deezer'] {
+      background: linear-gradient(to right, hsl(0, 0%, 25%), hsl(0, 0%, 15%));
+    }
+  }
+
+  &__close {
+    $size: 7rem;
+    width: $size;
+    height: $size;
+    grid-row: 3;
+  }
+}

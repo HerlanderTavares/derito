@@ -1,0 +1,217 @@
+@import '../helpers.scss';
+
+.active-area {
+  display: flex;
+  align-items: flex-end;
+}
+
+.hero {
+  width: 100vw;
+  height: $vh;
+  min-width: 33rem;
+  min-height: 33rem;
+  background-image: url('../../public/images/1-Hero/hero-bkg.webp');
+  background-size: cover;
+  $pad: 10rem;
+  padding-top: $pad;
+  border-radius: 15%;
+  position: relative;
+  overflow: hidden;
+
+  &__container {
+    width: 100%;
+    height: 100%;
+    max-height: 127.5rem;
+    display: grid;
+    grid-template-columns: max-content 10% 1fr;
+    grid-template-rows: max-content 1fr;
+    align-items: center;
+  }
+
+  &__header {
+    grid-column: 1 / span 2;
+    grid-row: 2;
+    padding-bottom: $pad;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: max-content;
+
+    h1 {
+      font-size: 12rem;
+      font-family: font(heading);
+      text-transform: uppercase;
+      translate: -2%;
+      font-weight: weight(light);
+    }
+
+    span {
+      font-size: 2.5rem;
+      font-weight: weight(light);
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    grid-row: 1 / -1;
+    grid-column: 2 / span 2;
+    display: flex;
+    justify-content: flex-end;
+    align-self: end;
+
+    img {
+      height: 100%;
+    }
+  }
+}
+
+.shadows {
+  width: 100%;
+  height: 100%;
+  min-width: 33rem;
+  min-height: 33rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: black;
+  background: radial-gradient(transparent, 85%, black), radial-gradient(transparent, 95%, black);
+  pointer-events: none;
+
+  &--bottom {
+    width: 100%;
+    height: 100%;
+    min-width: 33rem;
+    min-height: 33rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: black;
+    background: linear-gradient(to bottom, transparent, 90%, black);
+  }
+}
+
+/****************************************
+     MEDIA QUERIES
+****************************************/
+.hero {
+  &__header h1 {
+    @include portrait(630) {
+      font-size: max(7rem, 18vw);
+    }
+  }
+
+  &__header span {
+    @include portrait(630) {
+      font-size: max(2rem, 4.5vw);
+    }
+  }
+
+  &__image {
+    @include portrait(1100) {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      height: 90%;
+      width: 50vw;
+      justify-content: center;
+
+      img {
+        height: 110%;
+      }
+    }
+  }
+
+  .menu-btn {
+    @include portrait(970) {
+      position: absolute;
+      top: 4.5%;
+      left: 8%;
+    }
+  }
+}
+
+/****************************************
+     LANDSCAPE MEDIA QUERIES
+****************************************/
+.hero {
+  @include landscape(860) {
+    .active-area {
+      max-width: 90rem;
+    }
+
+    &__header {
+      padding: 0;
+    }
+  }
+
+  @include landscape(750) {
+    &__image img {
+      height: 130%;
+    }
+  }
+
+  @include landscape(650) {
+    &__image {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      height: 90%;
+      width: 50vw;
+      justify-content: center;
+    }
+  }
+
+  @include landscape(560) {
+    &__image img {
+      height: 180%;
+    }
+  }
+
+  @include landscape(500) {
+    padding-top: 5rem;
+
+    &__header h1 {
+      font-size: 10rem;
+    }
+
+    &__header span {
+      font-size: 2.2rem;
+    }
+  }
+
+  @include landscape(300) {
+    &__container {
+      align-items: start;
+      row-gap: 2rem;
+    }
+  }
+}
+
+/****************************************
+     LARGE LANDSCAPE QUERIES
+****************************************/
+.hero {
+  @include landscape(1500, $min_max: min) {
+    .active-area {
+      max-width: 150rem;
+    }
+
+    &__header h1 {
+      font-size: 20rem;
+    }
+
+    &__header span {
+      font-size: 4.5rem;
+    }
+
+    .menu-btn {
+      height: 7rem;
+    }
+  }
+
+  @include query(3000, $min_max: min) {
+    .active-area {
+      max-width: 200rem;
+    }
+  }
+}

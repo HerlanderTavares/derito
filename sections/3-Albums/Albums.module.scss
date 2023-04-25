@@ -1,0 +1,38 @@
+@import '../helpers.scss';
+
+.albums {
+  min-height: calc($vh + 10vh);
+  height: 100%;
+  @include flex-center;
+  background-color: color(bkg2);
+  padding: 5rem 0;
+  @extend %lines;
+
+  .container {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 100%;
+    @include landscape(1070) {
+      width: 95%;
+    }
+  }
+
+  @include landscape(600) {
+    padding: 3rem 0;
+    min-height: $vh;
+  }
+
+  &::before {
+    opacity: 0.1;
+
+    @include query(1160) {
+      opacity: 0.15;
+    }
+  }
+
+  &__close {
+    width: 5rem;
+    height: 5rem;
+    margin-bottom: 1rem;
+  }
+}

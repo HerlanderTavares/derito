@@ -1,0 +1,273 @@
+@import '../../../helpers.scss';
+
+.features {
+  margin-bottom: 30rem;
+
+  &__title {
+    width: 100%;
+    text-align: center;
+    font-size: 3rem;
+    text-transform: uppercase;
+    font-weight: weight(thin);
+    margin-bottom: 4rem;
+  }
+
+  &__carousel {
+    width: 100%;
+    display: grid;
+    grid-template-columns: max-content minmax(1px, 1fr) max-content;
+    align-items: center;
+    gap: 5rem;
+  }
+
+  &__cards {
+    @include flex;
+    overflow-x: scroll;
+    gap: 5rem;
+    scroll-behavior: smooth;
+    @extend %no-scrollbar;
+
+    &[data-size='small'] {
+      display: none;
+    }
+  }
+
+  &__btn {
+    width: 7rem;
+    height: 7rem;
+  }
+}
+
+.card {
+  width: 20rem;
+  aspect-ratio: 1 / 1.2;
+  border: solid 2px color(font);
+  border-radius: 1.2rem;
+  flex-shrink: 0;
+  padding: 1.7rem;
+  display: grid;
+  cursor: pointer;
+
+  %reveal {
+    transition: opacity 300ms ease-out;
+    opacity: 0;
+
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  &__front {
+    grid-column: 1;
+    grid-row: 1;
+    @include flex(space-between, center, column);
+    @extend %reveal;
+  }
+
+  &__back {
+    grid-column: 1;
+    grid-row: 1;
+    @extend %reveal;
+
+    h4 {
+      margin-bottom: 2rem;
+    }
+
+    p {
+      line-height: 1.5;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    aspect-ratio: 1;
+    background-size: cover;
+    border-radius: 0.5rem;
+  }
+}
+
+/************** Queries **************/
+.features {
+  @include query(1050) {
+    margin-bottom: 15rem;
+  }
+
+  @include query(810) {
+    &__btn {
+      display: none;
+    }
+
+    &__carousel {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  &__cards {
+    @include query(810) {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto;
+      overflow-x: hidden;
+      gap: 3rem;
+    }
+
+    @include query(665) {
+      &[data-size='large'] {
+        display: none;
+      }
+
+      &[data-size='small'] {
+        display: grid;
+      }
+    }
+  }
+}
+
+.card {
+  @include query(810) {
+    width: 100%;
+
+    &__back p {
+      font-size: 1.3rem;
+    }
+  }
+}
+
+/************** Small Cards **************/
+.features__cards[data-size='small'] {
+  @include query(520) {
+    gap: 2rem;
+  }
+
+  @include query(350) {
+    gap: 1.5rem;
+  }
+}
+
+.card[data-size='small'] {
+  grid-column: 1 / -1;
+  aspect-ratio: unset;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  padding: 0;
+  border: none;
+  pointer-events: none;
+
+  @include query(520) {
+    gap: 1.5rem;
+  }
+
+  &:nth-child(3n - 2) {
+    .card__front {
+      grid-column: 1;
+    }
+
+    .card__back {
+      transform-origin: 0 0;
+    }
+  }
+
+  &:nth-child(3n - 1) {
+    .card__front {
+      grid-column: 2;
+    }
+  }
+
+  &:nth-child(3n) {
+    .card__front {
+      grid-column: 3;
+    }
+
+    .card__back {
+      transform-origin: 100% 100%;
+    }
+  }
+
+  .card__front {
+    border: solid 2px color(font);
+    padding: 1.7rem;
+    border-radius: 0.8rem;
+    pointer-events: initial;
+
+    @include query(550) {
+      padding: 1.2rem;
+    }
+    @include query(410) {
+      padding: 0.5rem;
+    }
+
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  .card__back {
+    opacity: 1;
+    border: solid 2px color(font);
+    padding: 1.7rem;
+    grid-column: 1 / -1;
+    border-radius: 1rem;
+    height: 100%;
+    @include flex-center;
+    gap: 2rem;
+    z-index: 2;
+    background-color: color(bkg);
+    transition: opacity 400ms ease-in-out, scale 300ms ease-out;
+    opacity: 0;
+    scale: 0 1;
+    pointer-events: none;
+
+    @include query(550) {
+      padding: 1.2rem;
+    }
+
+    @include query(410) {
+      padding: 0.5rem;
+    }
+
+    &.active {
+      opacity: 1;
+      scale: 1 1;
+      pointer-events: initial;
+    }
+
+    .card__img {
+      grid-column: 1;
+      grid-row: 1 / -1;
+      width: auto;
+      height: 100%;
+    }
+
+    h4 {
+      grid-row: 1;
+      margin: 0;
+      font-size: 1.9rem;
+      align-self: end;
+      margin-bottom: 0.5rem;
+      @include query(520) {
+        font-size: 1.7rem;
+      }
+
+      @include query(410) {
+        font-size: 1.4rem;
+        margin-bottom: 0.2rem;
+      }
+    }
+
+    p {
+      grid-row: 2;
+      font-size: 1.5rem;
+      align-self: start;
+
+      @include query(520) {
+        font-size: 1.3rem;
+      }
+
+      @include query(520) {
+        font-size: 1.1rem;
+      }
+    }
+  }
+}

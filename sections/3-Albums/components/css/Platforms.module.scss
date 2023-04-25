@@ -1,0 +1,84 @@
+@import '../../../helpers.scss';
+
+.platforms {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 100%;
+  justify-items: center;
+  order: 4;
+
+  @include landscape(810) {
+    display: none;
+  }
+
+  %activate {
+    opacity: 0;
+    pointer-events: none;
+
+    &.activate {
+      opacity: 1;
+      pointer-events: initial;
+    }
+  }
+
+  &__btn {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 2rem;
+    color: color(font);
+    border: solid 3px color(font);
+    width: max-content;
+    background-color: rgba(color(font), 0.3);
+    padding: 1.5rem 3rem;
+    border-radius: 100vw;
+    @extend %btn;
+    transition: opacity 300ms ease-out, scale 300ms ease-out;
+
+    &:active {
+      transition: opacity 300ms ease-out, scale 0ms linear;
+      scale: 0.8;
+    }
+
+    @extend %activate;
+  }
+
+  &__links {
+    @include flex;
+    gap: 2rem;
+    grid-column: 1;
+    grid-row: 1;
+    transition: opacity 300ms ease-out;
+    @extend %activate;
+  }
+
+  &__link {
+    width: 6rem;
+    aspect-ratio: 1;
+    padding: 4%;
+    @include flex-center;
+    border-radius: 10%;
+    @extend %btn;
+
+    svg {
+      fill: white;
+    }
+
+    &[data-link='spotify'] {
+      background: linear-gradient(to right, hsl(141, 84%, 40%), hsl(141, 85%, 35%));
+    }
+
+    &[data-link='apple'] {
+      background: linear-gradient(to right, hsl(351, 95%, 70%), hsl(353, 96%, 55%));
+    }
+
+    &[data-link='amazon'] {
+      background: linear-gradient(to right, hsl(256, 100%, 50%), hsl(248, 55%, 30%));
+    }
+
+    &[data-link='deezer'] {
+      background: linear-gradient(to right, hsl(0, 0%, 25%), hsl(0, 0%, 15%));
+    }
+  }
+}
+
+/************** Queries **************/

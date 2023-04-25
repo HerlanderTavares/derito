@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fasthand&display=swap');
+
+/****************************************
+     VARIABLES
+****************************************/
+$font-weights: (
+  'thin': 100,
+  'extra-light': 200,
+  'light': 300,
+  'regular': 400,
+  'medium': 500,
+  'semibold': 600,
+  'bold': 700,
+  'extra-bold': 800,
+  'blick': 900,
+);
+
+$mainColor: #120f0c;
+$fontColor: #c6ab9a;
+
+$colors: (
+  'font': $fontColor,
+  'main': darken($fontColor, 20%),
+  'bkg': $mainColor,
+  'bkg2': lighten($mainColor, 0.5%),
+  'gradient': linear-gradient(to right, $fontColor, 50%, $mainColor),
+);
+
+$fonts: (
+  'main': 'Quicksand',
+  'heading': 'Raleway',
+  'heading2': 'Fasthand',
+);
+
+$header-pad: 12% 2rem 5%;
+
+/****************************************
+     FUNCTIONS & MIXINS
+****************************************/
+@function weight($weight-name) {
+  @return map-get($font-weights, $weight-name);
+}
+
+@function color($color-name) {
+  @return map-get($colors, $color-name);
+}
+
+@function font($font-name) {
+  @return map-get($fonts, $font-name), sans-serif;
+}
+
+@mixin query($size, $wid_hei: width, $min_max: max) {
+  @media (#{$min_max}-#{$wid_hei}: calc($size / 16 * 1em)) {
+    @content;
+  }
+}
+
+@mixin landscape($size, $wid_hei: height, $min_max: max) {
+  @media (orientation: landscape) and (#{$min_max}-#{$wid_hei}: calc($size / 16 * 1em)) {
+    @content;
+  }
+}
+
+@mixin portrait($size, $wid_hei: width, $min_max: max) {
+  @media (orientation: portrait) and (#{$min_max}-#{$wid_hei}: calc($size / 16 * 1em)) {
+    @content;
+  }
+}
+
+@mixin flex-center($dir: false) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @if $dir == true {
+    flex-direction: column;
+  }
+}
+
+@mixin flex($hor: null, $ver: null, $dir: null) {
+  display: flex;
+
+  @if $hor != null {
+    justify-content: $hor;
+  }
+
+  @if $ver != null {
+    align-items: $ver;
+  }
+
+  @if $dir != null {
+    flex-direction: $dir;
+  }
+}
+
+@mixin box-shadow($x: 1, $y: 1, $blur: 1, $spr: 1, $opacity: 1, $inset: false) {
+  @if $x == remove {
+    box-shadow: 0 0 0 0 rgba(black, 0);
+  } @else if $inset == true {
+    box-shadow: inset
+      calc($x * 1rem)
+      calc($y * 1rem)
+      calc($blur * 1rem)
+      calc($spr * 1rem)
+      rgba(0, 0, 0, $opacity);
+  } @else {
+    box-shadow: calc($x * 1rem)
+      calc($y * 1rem)
+      calc($blur * 1rem)
+      calc($spr * 1rem)
+      rgba(0, 0, 0, $opacity);
+  }
+}
+
+@mixin triangle($size, $color, $width: null) {
+  width: 0;
+  height: 0;
+  border-bottom: $size solid $color;
+
+  @if $width != null {
+    border-left: $width solid transparent;
+    border-right: $width solid transparent;
+  } @else {
+    border-left: calc($size / 2) solid transparent;
+    border-right: calc($size / 2) solid transparent;
+  }
+}
+
+/************** Extensions **************/
+%no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+%no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+%lines {
+  z-index: 1;
+
+  &::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url('./UI/components/svg/lines-bkg.svg');
+    background-repeat: repeat-y;
+    background-size: 100% auto;
+    opacity: 0.2;
+    pointer-events: none;
+    z-index: -1;
+
+    @include query(1160) {
+      opacity: 0.3;
+    }
+  }
+}
+
+%btn {
+  transition: scale 200ms ease-out;
+
+  &:hover {
+    scale: 1.2;
+  }
+
+  &:active {
+    transition: none;
+    scale: 0.8;
+  }
+}
+
+$vh: calc(var(--vh, 1vh) * 100);
+
+/************** Check Browsers **************/
+@mixin explorer() {
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    @content;
+  }
+}
+
+@mixin chrome() {
+  @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    @content;
+  }
+}
+
+@mixin firefox() {
+  @-moz-document url-prefix() {
+    @content;
+  }
+}
+
+@mixin edge() {
+  @supports (-ms-accelerator: true) {
+    @content;
+  }
+}
+
+@mixin safari() {
+  @media not all and (min-resolution: 0.001dpcm) {
+    @content;
+  }
+}

@@ -1,0 +1,62 @@
+@import '../../../helpers.scss';
+
+.audio {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 998;
+  height: 15rem;
+  padding: 4rem 0;
+  direction: ltr;
+
+  .container {
+    @include flex(flex-end);
+  }
+
+  &__player {
+    width: 50%;
+    max-width: 30rem;
+    height: 100%;
+    background-color: rgba(color(font), 0.2);
+    backdrop-filter: blur(9px);
+    border-radius: 0.7rem;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    grid-template-rows: 100%;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border: solid 3px color(font);
+    gap: 0.7rem;
+
+    button {
+      height: 100%;
+      aspect-ratio: 1;
+
+      svg {
+        stroke-width: 0;
+      }
+    }
+  }
+
+  &__seeker {
+    width: 100%;
+    height: 100%;
+    @include flex-center;
+    cursor: pointer;
+
+    span {
+      width: 100%;
+      height: 0.5rem;
+      background-color: rgba(color(bkg), 0.5);
+      border-radius: 100vw;
+      @include flex(flex-start);
+
+      span {
+        width: 20%;
+        background-color: color(font);
+        height: 100%;
+      }
+    }
+  }
+}

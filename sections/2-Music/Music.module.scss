@@ -1,0 +1,125 @@
+@import '../helpers.scss';
+
+.music {
+  .container {
+    @include flex($ver: flex-end, $dir: column);
+    gap: 30rem;
+    padding-bottom: 30rem;
+
+    @include query(960) {
+      align-items: center;
+      gap: 20rem;
+      padding-bottom: 20rem;
+    }
+  }
+
+  &__card {
+    width: 100%;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    grid-template-rows: 1fr max-content max-content 1fr;
+    column-gap: 5rem;
+    align-items: center;
+
+    @include query(960, $min_max: min) {
+      &[data-music='afrojazz'] {
+        direction: rtl;
+      }
+    }
+
+    @include query(960) {
+      grid-template-columns: 100%;
+      grid-template-rows: repeat(3, max-content);
+    }
+
+    &[data-music='afrobossa'] {
+      grid-template-rows: 1fr max-content max-content max-content 1fr;
+
+      @include query(960) {
+        grid-template-rows: repeat(4, max-content);
+      }
+    }
+  }
+
+  &__player {
+    width: 30rem;
+    grid-row: 1 / -1;
+  }
+
+  &__title {
+    text-transform: uppercase;
+    font-weight: weight(regular);
+    font-size: 3rem;
+    line-height: 1;
+    margin-bottom: 2rem;
+    grid-row: 2;
+  }
+
+  &__description {
+    font-size: 2rem;
+    line-height: 2;
+    grid-row: 3;
+  }
+
+  &__learn {
+    grid-row: 4;
+    color: color(font);
+    align-self: start;
+    background-color: rgba(color(font), 0.3);
+    border-radius: 100vh;
+    margin-top: 2rem;
+    border: solid 2px color(font);
+    width: fit-content;
+    padding: 1.5rem 2.5rem;
+    font-size: 1.6rem;
+    @extend %btn;
+
+    @include query(960) {
+      margin-top: 0;
+    }
+  }
+
+  @include query(960) {
+    &__card {
+      justify-items: center;
+      gap: 5rem;
+    }
+
+    &__player {
+      grid-row: 2;
+    }
+
+    &__title {
+      grid-row: 1;
+      text-align: center;
+      margin: 0;
+    }
+
+    &__description {
+      grid-row: 3;
+      text-align: center;
+    }
+  }
+
+  @include query(500) {
+    &__description {
+      font-size: 1.8rem;
+    }
+  }
+
+  @include query(400) {
+    &__description {
+      font-size: 1.5rem;
+    }
+  }
+
+  @include query(350) {
+    &__player {
+      width: 100%;
+    }
+
+    h2 {
+      font-size: 5rem;
+    }
+  }
+}

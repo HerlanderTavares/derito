@@ -1,0 +1,196 @@
+@import '../../../helpers.scss';
+
+.card {
+  width: 100%;
+  height: 100%;
+  @include flex-center(true);
+  gap: 3rem;
+  grid-column: 1;
+  grid-row: 1;
+
+  &__header {
+    @include flex(space-between, center);
+  }
+
+  &__title {
+    display: block;
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    font-weight: weight(light);
+  }
+
+  &__description {
+    font-size: 2rem;
+    line-height: 2;
+    text-align: center;
+  }
+
+  &__nav {
+    width: 100%;
+    max-width: 90rem;
+    display: grid;
+    grid-template-columns: max-content 1fr max-content;
+    justify-items: center;
+    align-items: center;
+  }
+
+  &__btn {
+    $size: 6rem;
+    width: $size;
+    height: $size;
+    @extend %btn;
+  }
+
+  .platforms {
+    &[data-size='small'] {
+      display: none;
+      justify-items: end;
+    }
+  }
+
+  &__nav-btns {
+    gap: 7rem;
+    font-size: 2rem;
+    grid-column: 1 / -1;
+    grid-row: 1;
+    font-size: 5rem;
+
+    display: none;
+
+    button {
+      width: 1em;
+      height: 1em;
+      @include flex-center;
+
+      &[data-btn='play'] {
+        color: color(font);
+      }
+    }
+  }
+
+  .music__player {
+    height: 20rem;
+    aspect-ratio: 1;
+    border-radius: 7%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    grid-row: 1 / -1;
+
+    &[data-player='alison'] button {
+      border-color: color(font);
+
+      svg {
+        fill: color(font) !important;
+      }
+    }
+  }
+}
+
+/************** Queries **************/
+
+.card {
+  @include landscape(810) {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    grid-template-rows: 1fr max-content max-content max-content 1fr;
+  }
+
+  @include landscape(1000, width) {
+    display: block;
+  }
+
+  &__nav {
+    @include landscape(810) {
+      grid-row: 2;
+      display: block;
+      position: relative;
+    }
+
+    @include landscape(1000, width) {
+      margin-bottom: 1rem;
+      width: 100%;
+      // position: initial;
+    }
+  }
+
+  &__title {
+    @include landscape(810) {
+      text-align: left;
+    }
+
+    @include landscape(750, width) {
+      font-size: 2.7rem;
+    }
+
+    @include query(480) {
+      font-size: 2.8rem;
+    }
+
+    @include query(400) {
+      font-size: clamp(2rem, 7vw, 3rem);
+    }
+  }
+
+  &__nav-btns {
+    @include landscape(810) {
+      @include flex-center;
+    }
+
+    @include landscape(920, width) {
+      gap: 3.5rem;
+    }
+
+    @include landscape(815, width) {
+      gap: 2.5rem;
+      font-size: 3.5rem;
+    }
+  }
+
+  &__description {
+    @include query(720) {
+      font-size: 1.8rem;
+    }
+    @include query(535) {
+      order: 4;
+    }
+    @include query(500) {
+      font-size: 1.6rem;
+    }
+
+    @include landscape(810) {
+      text-align: left;
+      grid-row: 3;
+      grid-column: 2;
+    }
+
+    @include landscape(810) {
+      text-align: left;
+      grid-row: 3;
+      grid-column: 2;
+    }
+  }
+
+  &__btn {
+    @include landscape(810) {
+      display: none;
+    }
+  }
+
+  .music__player {
+    @include landscape(810) {
+      height: 30rem;
+      grid-row: 1 / -1;
+      grid-column: 1;
+    }
+
+    @include landscape(1000, width) {
+      float: left;
+      margin-right: 2rem;
+      height: 20rem;
+    }
+
+    @include landscape(280) {
+      height: 85vh;
+    }
+  }
+}
